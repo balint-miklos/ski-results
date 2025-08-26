@@ -61,8 +61,11 @@
 
         // Use d3.csv to load and parse the data from the external file
         d3.csv(csvUrl, d => {
-            // This function is applied to each row as it's loaded
-            d.Rank = +d.Rank; // Convert Rank from string to number
+            // Handle Rank: Convert to number if possible, otherwise keep as string (e.g., "DNF")
+            const rankAsNumber = parseInt(d.Rank, 10);
+            d.Rank = isNaN(rankAsNumber) ? d.Rank : rankAsNumber;
+
+            // Date is now expected to be in YYYY-MM-DD format, so no custom parsing is needed.
             return d;
         }).then(function(originalData) {
             // This block of code runs ONLY after the data has been successfully loaded.
@@ -162,8 +165,8 @@
                         tbody.classed('collapsed', true);
                     }
 
-                    // Create the results summary string
-                    const ranks = results.map(r => r.Rank).sort((a, b) => a - b);
+                    // Create the results summary string (filter out non-numeric ranks)
+                    const ranks = results.map(r => r.Rank).filter(r => typeof r === 'number').sort((a, b) => a - b);
                     const summary = ranks.map(rank => {
                         if (rank === 1) return '🥇';
                         if (rank === 2) return '🥈';
