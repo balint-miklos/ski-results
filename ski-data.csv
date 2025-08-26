@@ -1,47 +1,34 @@
 Name,Category,RaceName,Event,Rank,Date
-Liam Smith,U9,Snowy Slopes Showdown,Alpine Slalom,3,2025-02-08
-Liam Smith,U9,Alpine Challenge,Kombi Race,1,2025-01-26
-Liam Smith,U9,Alpine Challenge,Ski Cross,5,2025-01-26
-Olivia Jones,U9,Mountain Top Trophy,Giant Slalom,2,2025-02-01
-Olivia Jones,U9,Snowy Slopes Showdown,Night Parallel Slalom,4,2025-02-09
-Olivia Jones,U9,Winter Classic Cup,Ski Cross,2,2025-02-08
-Noah Brown,U9,Mountain Top Trophy,Alpine Slalom,5,2025-02-02
-Noah Brown,U9,Mountain Top Trophy,Giant Slalom,6,2025-02-02
-Emma Davis,U9,Alpine Challenge,Kombi Race,3,2025-01-25
-Emma Davis,U9,Glacier Grand Prix,Night Parallel Slalom,1,2025-01-26
-Emma Davis,U9,Mountain Top Trophy,Ski Cross,4,2025-02-01
-Ava Taylor,U11,Glacier Grand Prix,Alpine Slalom,4,2025-01-25
-Ava Taylor,U11,Mountain Top Trophy,Giant Slalom,2,2025-02-02
-Ava Taylor,U11,Snowy Slopes Showdown,Super-G,1,2025-02-08
-Ava Taylor,U11,Winter Classic Cup,Glacier Giant Slalom,5,2025-02-09
-William Moore,U11,Snowy Slopes Showdown,Super-G,3,2025-02-09
-William Moore,U11,Mountain Top Trophy,Kombi Race,2,2025-02-01
-William Moore,U11,Winter Classic Cup,Night Parallel Slalom,6,2025-02-08
-Sophia Johnson,U11,Mountain Top Trophy,Alpine Slalom,1,2025-02-02
-Sophia Johnson,U11,Winter Classic Cup,Giant Slalom,3,2025-02-09
-Sophia Johnson,U11,Glacier Grand Prix,Ski Cross,7,2025-01-25
-Sophia Johnson,U11,Snowy Slopes Showdown,Glacier Giant Slalom,2,2025-02-08
-James Miller,U11,Alpine Challenge,Super-G,5,2025-01-26
-James Miller,U11,Mountain Top Trophy,Kombi Race,4,2025-02-01
-James Miller,U11,Mountain Top Trophy,Night Parallel Slalom,3,2025-02-02
-Isabella Anderson,U11,Alpine Challenge,Alpine Slalom,6,2025-01-25
-Isabella Anderson,U11,Winter Classic Cup,Giant Slalom,5,2025-02-08
-Isabella Anderson,U11,Glacier Grand Prix,Ski Cross,1,2025-01-26
-Benjamin Martinez,U14,Winter Classic Cup,Alpine Slalom,2,2025-02-09
-Benjamin Martinez,U14,Alpine Challenge,Super-G,1,2025-01-25
-Benjamin Martinez,U14,Mountain Top Trophy,Glacier Giant Slalom,3,2025-02-01
-Benjamin Martinez,U14,Glacier Grand Prix,Downhill,1,2025-01-25
-Mia Garcia,U14,Alpine Challenge,Giant Slalom,1,2025-01-26
-Mia Garcia,U14,Alpine Challenge,Super-G,4,2025-01-26
-Mia Garcia,U14,Snowy Slopes Showdown,Kombi Race,3,2025-02-08
-Mia Garcia,U14,Glacier Grand Prix,Downhill,5,2025-01-26
-Lucas Rodriguez,U14,Winter Classic Cup,Alpine Slalom,7,2025-02-08
-Lucas Rodriguez,U14,Winter Classic Cup,Giant Slalom,6,2025-02-08
-Lucas Rodriguez,U14,Winter Classic Cup,Downhill,2,2025-02-09
-Charlotte Hernandez,U14,Snowy Slopes Showdown,Super-G,2,2025-02-09
-Charlotte Hernandez,U14,Mountain Top Trophy,Kombi Race,1,2025-02-02
-Charlotte Hernandez,U14,Alpine Challenge,Glacier Giant Slalom,4,2025-01-25
-Charlotte Hernandez,U14,Alpine Challenge,Night Parallel Slalom,2,2025-01-26
-Henry Lopez,U14,Glacier Grand Prix,Alpine Slalom,4,2025-01-25
-Henry Lopez,U14,Alpine Challenge,Giant Slalom,4,2025-01-25
-Henry Lopez,U14,Snowy Slopes Showdown,Downhill,3,2025-02-09
+Baumgartner Elisa,MU12,72. Albisrennen,Riesenslalom,4,19.01.2025
+Baumgartner Melicia,MU14,72. Albisrennen,Riesenslalom,2,19.01.2025
+Seiler Anna,MU14,72. Albisrennen,Riesenslalom,12,19.01.2025
+Börlin Mael,KU12,72. Albisrennen,Riesenslalom,4,19.01.2025
+Rossi Liam,KU12,72. Albisrennen,Riesenslalom,10,19.01.2025
+Seiler Louis,KU16,72. Albisrennen,Riesenslalom,4,19.01.2025
+Hensch Pascal,KU14,72. Albisrennen,Riesenslalom,DNF,19.01.2025
+Simmerle Finn,KU16,72. Albisrennen,Riesenslalom,DNF,19.01.2025
+Kaifer Chiara Luana,Mädchen U12,Zürileu Rennen 2025,Riesenslalom,4,11.01.2025
+Baumgartner Elisa,Mädchen U12,Zürileu Rennen 2025,Riesenslalom,8,11.01.2025
+Baumgartner Melicia,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,5,11.01.2025
+Seiler Anna,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,17,11.01.2025
+Artho Emma,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,24,11.01.2025
+Roshardt Aliyah,Mädchen U16,Zürileu Rennen 2025,Riesenslalom,4,11.01.2025
+Börlin Mael,Knaben U12,Zürileu Rennen 2025,Riesenslalom,6,11.01.2025
+Rossi Liam,Knaben U12,Zürileu Rennen 2025,Riesenslalom,18,11.01.2025
+Hensch Pascal,Knaben U14,Zürileu Rennen 2025,Riesenslalom,24,11.01.2025
+Fuhrer Ramon,Knaben U14,Zürileu Rennen 2025,Riesenslalom,40,11.01.2025
+Simmerle Finn,Knaben U16,Zürileu Rennen 2025,Riesenslalom,8,11.01.2025
+Janssen Justin,Knaben U16,Zürileu Rennen 2025,Riesenslalom,11,11.01.2025
+Baumgartner Elisa,Mädchen U12,RGZO Slalom,Slalom,2,26.01.2025
+Kaifer Chiara Luana,Mädchen U12,RGZO Slalom,Slalom,6,26.01.2025
+Baumgartner Melicia,Mädchen U14,RGZO Slalom,Slalom,2,26.01.2025
+Seiler Anna,Mädchen U14,RGZO Slalom,Slalom,8,26.01.2025
+Artho Emma,Mädchen U14,RGZO Slalom,Slalom,12,26.01.2025
+Roshardt Aliyah,Mädchen U16,RGZO Slalom,Slalom,1,26.01.2025
+Börlin Mael,Knaben U12,RGZO Slalom,Slalom,1,26.01.2025
+Rossi Liam,Knaben U12,RGZO Slalom,Slalom,5,26.01.2025
+Hensch Pascal,Knaben U14,RGZO Slalom,Slalom,11,26.01.2025
+Fuhrer Ramon,Knaben U14,RGZO Slalom,Slalom,26,26.01.2025
+Seiler Louis,Knaben U16,RGZO Slalom,Slalom,9,26.01.2025
+Janssen Justin,Knaben U16,RGZO Slalom,Slalom,10,26.01.2025
+Simmerle Finn,Knaben U16,RGZO Slalom,Slalom,DNF,26.01.2025
