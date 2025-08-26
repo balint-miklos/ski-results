@@ -56,240 +56,197 @@
     </div>
 
     <script>
-        // The CSV database is stored in a JavaScript string, now with a Date column
-        const csvData = `Name,Category,RaceName,Event,Rank,Date
-Liam Smith,U9,Snowy Slopes Showdown,Alpine Slalom,3,2025-02-08
-Liam Smith,U9,Alpine Challenge,Kombi Race,1,2025-01-26
-Liam Smith,U9,Alpine Challenge,Ski Cross,5,2025-01-26
-Olivia Jones,U9,Mountain Top Trophy,Giant Slalom,2,2025-02-01
-Olivia Jones,U9,Snowy Slopes Showdown,Night Parallel Slalom,4,2025-02-09
-Olivia Jones,U9,Winter Classic Cup,Ski Cross,2,2025-02-08
-Noah Brown,U9,Mountain Top Trophy,Alpine Slalom,5,2025-02-02
-Noah Brown,U9,Mountain Top Trophy,Giant Slalom,6,2025-02-02
-Emma Davis,U9,Alpine Challenge,Kombi Race,3,2025-01-25
-Emma Davis,U9,Glacier Grand Prix,Night Parallel Slalom,1,2025-01-26
-Emma Davis,U9,Mountain Top Trophy,Ski Cross,4,2025-02-01
-Ava Taylor,U11,Glacier Grand Prix,Alpine Slalom,4,2025-01-25
-Ava Taylor,U11,Mountain Top Trophy,Giant Slalom,2,2025-02-02
-Ava Taylor,U11,Snowy Slopes Showdown,Super-G,1,2025-02-08
-Ava Taylor,U11,Winter Classic Cup,Glacier Giant Slalom,5,2025-02-09
-William Moore,U11,Snowy Slopes Showdown,Super-G,3,2025-02-09
-William Moore,U11,Mountain Top Trophy,Kombi Race,2,2025-02-01
-William Moore,U11,Winter Classic Cup,Night Parallel Slalom,6,2025-02-08
-Sophia Johnson,U11,Mountain Top Trophy,Alpine Slalom,1,2025-02-02
-Sophia Johnson,U11,Winter Classic Cup,Giant Slalom,3,2025-02-09
-Sophia Johnson,U11,Glacier Grand Prix,Ski Cross,7,2025-01-25
-Sophia Johnson,U11,Snowy Slopes Showdown,Glacier Giant Slalom,2,2025-02-08
-James Miller,U11,Alpine Challenge,Super-G,5,2025-01-26
-James Miller,U11,Mountain Top Trophy,Kombi Race,4,2025-02-01
-James Miller,U11,Mountain Top Trophy,Night Parallel Slalom,3,2025-02-02
-Isabella Anderson,U11,Alpine Challenge,Alpine Slalom,6,2025-01-25
-Isabella Anderson,U11,Winter Classic Cup,Giant Slalom,5,2025-02-08
-Isabella Anderson,U11,Glacier Grand Prix,Ski Cross,1,2025-01-26
-Benjamin Martinez,U14,Winter Classic Cup,Alpine Slalom,2,2025-02-09
-Benjamin Martinez,U14,Alpine Challenge,Super-G,1,2025-01-25
-Benjamin Martinez,U14,Mountain Top Trophy,Glacier Giant Slalom,3,2025-02-01
-Benjamin Martinez,U14,Glacier Grand Prix,Downhill,1,2025-01-25
-Mia Garcia,U14,Alpine Challenge,Giant Slalom,1,2025-01-26
-Mia Garcia,U14,Alpine Challenge,Super-G,4,2025-01-26
-Mia Garcia,U14,Snowy Slopes Showdown,Kombi Race,3,2025-02-08
-Mia Garcia,U14,Glacier Grand Prix,Downhill,5,2025-01-26
-Lucas Rodriguez,U14,Winter Classic Cup,Alpine Slalom,7,2025-02-08
-Lucas Rodriguez,U14,Winter Classic Cup,Giant Slalom,6,2025-02-08
-Lucas Rodriguez,U14,Winter Classic Cup,Downhill,2,2025-02-09
-Charlotte Hernandez,U14,Snowy Slopes Showdown,Super-G,2,2025-02-09
-Charlotte Hernandez,U14,Mountain Top Trophy,Kombi Race,1,2025-02-02
-Charlotte Hernandez,U14,Alpine Challenge,Glacier Giant Slalom,4,2025-01-25
-Charlotte Hernandez,U14,Alpine Challenge,Night Parallel Slalom,2,2025-01-26
-Henry Lopez,U14,Glacier Grand Prix,Alpine Slalom,4,2025-01-25
-Henry Lopez,U14,Alpine Challenge,Giant Slalom,4,2025-01-25
-Henry Lopez,U14,Snowy Slopes Showdown,Downhill,3,2025-02-09`;
+        // URL to the CSV file. A relative path works if the CSV is in the same folder.
+        const csvUrl = './ski-data.csv';
 
-        // Store the original data
-        const originalData = d3.csvParse(csvData, d => {
-            d.Rank = +d.Rank;
+        // Use d3.csv to load and parse the data from the external file
+        d3.csv(csvUrl, d => {
+            // This function is applied to each row as it's loaded
+            d.Rank = +d.Rank; // Convert Rank from string to number
             return d;
-        });
+        }).then(function(originalData) {
+            // This block of code runs ONLY after the data has been successfully loaded.
 
-        const table = d3.select('#results-table');
-        const filterInput = d3.select('#filter-input');
-        
-        // Define columns for the event data rows
-        const eventDataColumns = originalData.columns.filter(d => !['RaceName', 'Name', 'Date'].includes(d));
-
-        // Event listener for the filter input
-        filterInput.on('input', function() {
-            const filterValue = this.value.toLowerCase();
+            const table = d3.select('#results-table');
+            const filterInput = d3.select('#filter-input');
             
-            if (filterValue) {
-                const filteredData = originalData.filter(row => {
-                    const columnsToFilter = ['Name', 'Category', 'RaceName', 'Event', 'Rank', 'Date'];
-                    
-                    const substringMatch = columnsToFilter.some(column => 
-                        String(row[column]).toLowerCase().includes(filterValue)
-                    );
+            // Define columns for the event data rows
+            const eventDataColumns = originalData.columns.filter(d => !['RaceName', 'Name', 'Date'].includes(d));
 
-                    let specialMatch = false;
-                    if ((filterValue === 'medal' || filterValue === 'medals') && (row.Rank >= 1 && row.Rank <= 3)) {
-                        specialMatch = true;
-                    } else if (filterValue === 'gold' && row.Rank === 1) {
-                        specialMatch = true;
-                    } else if (filterValue === 'silver' && row.Rank === 2) {
-                        specialMatch = true;
-                    } else if (filterValue === 'bronze' && row.Rank === 3) {
-                        specialMatch = true;
-                    }
-                    
-                    return substringMatch || specialMatch;
-                });
-                renderTable(filteredData, true);
-            } else {
-                renderTable(originalData, false);
-            }
-        });
+            // Event listener for the filter input
+            filterInput.on('input', function() {
+                const filterValue = this.value.toLowerCase();
+                
+                if (filterValue) {
+                    const filteredData = originalData.filter(row => {
+                        const columnsToFilter = ['Name', 'Category', 'RaceName', 'Event', 'Rank', 'Date'];
+                        
+                        const substringMatch = columnsToFilter.some(column => 
+                            String(row[column]).toLowerCase().includes(filterValue)
+                        );
 
-        // Main function to render the table with a given dataset
-        function renderTable(data, isFiltering) {
-            table.html('');
-
-            // Helper function to get the start of the week (Sunday) in UTC
-            function getStartOfWeekUTC(dateStr) {
-                const d = new Date(dateStr);
-                const day = d.getUTCDay(); // 0 = Sunday
-                const diff = d.getUTCDate() - day;
-                return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
-            }
-
-            // Determine the start of the most recent week from the current dataset
-            const latestDateStr = d3.max(data, d => d.Date);
-            let startOfMostRecentWeek = null;
-            if (latestDateStr) {
-                startOfMostRecentWeek = getStartOfWeekUTC(latestDateStr + 'T00:00:00Z');
-            }
-
-            const thead = table.append('thead').attr('class', 'text-xs text-gray-700 uppercase bg-gray-50');
-            const headerRow = thead.append('tr');
-            headerRow.append('th').attr('class', 'px-6 py-3');
-            headerRow.selectAll('th.data-header')
-                .data(eventDataColumns)
-                .join('th')
-                .attr('class', 'data-header px-6 py-3')
-                .attr('scope', 'col')
-                .text(d => d);
-
-            const groupedByRace = d3.group(data, d => d.RaceName);
-            const raceEntries = Array.from(groupedByRace.entries());
-
-            // Sort races chronologically, most recent first
-            raceEntries.sort(([raceNameA, resultsA], [raceNameB, resultsB]) => {
-                const maxDateA = d3.max(resultsA, d => d.Date);
-                const maxDateB = d3.max(resultsB, d => d.Date);
-                return new Date(maxDateB) - new Date(maxDateA);
+                        let specialMatch = false;
+                        if ((filterValue === 'medal' || filterValue === 'medals') && (row.Rank >= 1 && row.Rank <= 3)) {
+                            specialMatch = true;
+                        } else if (filterValue === 'gold' && row.Rank === 1) {
+                            specialMatch = true;
+                        } else if (filterValue === 'silver' && row.Rank === 2) {
+                            specialMatch = true;
+                        } else if (filterValue === 'bronze' && row.Rank === 3) {
+                            specialMatch = true;
+                        }
+                        
+                        return substringMatch || specialMatch;
+                    });
+                    renderTable(filteredData, true);
+                } else {
+                    renderTable(originalData, false);
+                }
             });
 
-            raceEntries.forEach(([raceName, results]) => {
-                const tbody = table.append('tbody');
-                
-                let isInitiallyCollapsed = true;
-                if (isFiltering) {
-                    isInitiallyCollapsed = false; // Always expand when filtering
-                } else if (startOfMostRecentWeek) {
-                    const raceMaxDateStr = d3.max(results, d => d.Date);
-                    const raceStartOfWeek = getStartOfWeekUTC(raceMaxDateStr + 'T00:00:00Z');
-                    // Expand if the race's week is the same as the most recent week
-                    if (raceStartOfWeek.getTime() === startOfMostRecentWeek.getTime()) {
-                        isInitiallyCollapsed = false;
+            // Main function to render the table with a given dataset
+            function renderTable(data, isFiltering) {
+                table.html('');
+
+                // Helper function to get the start of the week (Sunday) in UTC
+                function getStartOfWeekUTC(dateStr) {
+                    const d = new Date(dateStr);
+                    const day = d.getUTCDay(); // 0 = Sunday
+                    const diff = d.getUTCDate() - day;
+                    return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
+                }
+
+                // Determine the start of the most recent week from the current dataset
+                const latestDateStr = d3.max(data, d => d.Date);
+                let startOfMostRecentWeek = null;
+                if (latestDateStr) {
+                    startOfMostRecentWeek = getStartOfWeekUTC(latestDateStr + 'T00:00:00Z');
+                }
+
+                const thead = table.append('thead').attr('class', 'text-xs text-gray-700 uppercase bg-gray-50');
+                const headerRow = thead.append('tr');
+                headerRow.append('th').attr('class', 'px-6 py-3');
+                headerRow.selectAll('th.data-header')
+                    .data(eventDataColumns)
+                    .join('th')
+                    .attr('class', 'data-header px-6 py-3')
+                    .attr('scope', 'col')
+                    .text(d => d);
+
+                const groupedByRace = d3.group(data, d => d.RaceName);
+                const raceEntries = Array.from(groupedByRace.entries());
+
+                // Sort races chronologically, most recent first
+                raceEntries.sort(([raceNameA, resultsA], [raceNameB, resultsB]) => {
+                    const maxDateA = d3.max(resultsA, d => d.Date);
+                    const maxDateB = d3.max(resultsB, d => d.Date);
+                    return new Date(maxDateB) - new Date(maxDateA);
+                });
+
+                raceEntries.forEach(([raceName, results]) => {
+                    const tbody = table.append('tbody');
+                    
+                    let isInitiallyCollapsed = true;
+                    if (isFiltering) {
+                        isInitiallyCollapsed = false; // Always expand when filtering
+                    } else if (startOfMostRecentWeek) {
+                        const raceMaxDateStr = d3.max(results, d => d.Date);
+                        const raceStartOfWeek = getStartOfWeekUTC(raceMaxDateStr + 'T00:00:00Z');
+                        // Expand if the race's week is the same as the most recent week
+                        if (raceStartOfWeek.getTime() === startOfMostRecentWeek.getTime()) {
+                            isInitiallyCollapsed = false;
+                        }
                     }
-                }
 
-                if (isInitiallyCollapsed) {
-                    tbody.classed('collapsed', true);
-                }
-
-                // Create the results summary string
-                const ranks = results.map(r => r.Rank).sort((a, b) => a - b);
-                const summary = ranks.map(rank => {
-                    if (rank === 1) return '🥇';
-                    if (rank === 2) return '🥈';
-                    if (rank === 3) return '🥉';
-                    return rank;
-                }).join(' ');
-
-                // Create the date range string
-                const uniqueDates = [...new Set(results.map(r => r.Date))].sort();
-                let dateString = '';
-                if (uniqueDates.length > 0) {
-                    const firstDate = new Date(uniqueDates[0] + 'T00:00:00Z');
-                    const month = firstDate.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
-                    const year = firstDate.getUTCFullYear();
-                    const firstDay = firstDate.getUTCDate();
-
-                    if (uniqueDates.length > 1) {
-                        const lastDate = new Date(uniqueDates[uniqueDates.length - 1] + 'T00:00:00Z');
-                        const lastDay = lastDate.getUTCDate();
-                        dateString = `${firstDay}-${lastDay} ${month} ${year}`;
-                    } else {
-                        dateString = `${firstDay} ${month} ${year}`;
+                    if (isInitiallyCollapsed) {
+                        tbody.classed('collapsed', true);
                     }
-                }
 
-                const raceHeader = tbody.append('tr')
-                    .attr('class', 'group-header')
-                    .on('click', function() {
-                        const isCollapsed = tbody.classed('collapsed');
-                        tbody.classed('collapsed', !isCollapsed);
-                        tbody.selectAll('tr:not(.group-header)')
-                             .style('display', isCollapsed ? 'table-row' : 'none');
-                        d3.select(this).select('.indicator').text(isCollapsed ? '[-]' : '[+]');
-                    });
-                
-                raceHeader.append('td')
-                    .attr('colspan', eventDataColumns.length + 1)
-                    .attr('class', 'px-6 py-3 text-lg')
-                    .html(`<span class="indicator">${isInitiallyCollapsed ? '[+]' : '[-]'}</span>${raceName} (${dateString}, ${summary})`);
-                
-                const groupedByAthlete = d3.group(results, d => d.Name);
-                const sortedAthletes = Array.from(groupedByAthlete.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+                    // Create the results summary string
+                    const ranks = results.map(r => r.Rank).sort((a, b) => a - b);
+                    const summary = ranks.map(rank => {
+                        if (rank === 1) return '🥇';
+                        if (rank === 2) return '🥈';
+                        if (rank === 3) return '🥉';
+                        return rank;
+                    }).join(' ');
 
-                sortedAthletes.forEach(([athleteName, athleteEvents]) => {
-                    athleteEvents.sort((a, b) => a.Event.localeCompare(b.Event));
+                    // Create the date range string
+                    const uniqueDates = [...new Set(results.map(r => r.Date))].sort();
+                    let dateString = '';
+                    if (uniqueDates.length > 0) {
+                        const firstDate = new Date(uniqueDates[0] + 'T00:00:00Z');
+                        const month = firstDate.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+                        const year = firstDate.getUTCFullYear();
+                        const firstDay = firstDate.getUTCDate();
 
-                    tbody.append('tr')
-                        .attr('class', 'athlete-header')
-                        .append('td')
+                        if (uniqueDates.length > 1) {
+                            const lastDate = new Date(uniqueDates[uniqueDates.length - 1] + 'T00:00:00Z');
+                            const lastDay = lastDate.getUTCDate();
+                            dateString = `${firstDay}-${lastDay} ${month} ${year}`;
+                        } else {
+                            dateString = `${firstDay} ${month} ${year}`;
+                        }
+                    }
+
+                    const raceHeader = tbody.append('tr')
+                        .attr('class', 'group-header')
+                        .on('click', function() {
+                            const isCollapsed = tbody.classed('collapsed');
+                            tbody.classed('collapsed', !isCollapsed);
+                            tbody.selectAll('tr:not(.group-header)')
+                                 .style('display', isCollapsed ? 'table-row' : 'none');
+                            d3.select(this).select('.indicator').text(isCollapsed ? '[-]' : '[+]');
+                        });
+                    
+                    raceHeader.append('td')
                         .attr('colspan', eventDataColumns.length + 1)
-                        .attr('class', 'px-6 py-2 font-medium text-gray-800 border-t')
-                        .style('padding-left', '2rem')
-                        .text(athleteName);
+                        .attr('class', 'px-6 py-3 text-lg')
+                        .html(`<span class="indicator">${isInitiallyCollapsed ? '[+]' : '[-]'}</span>${raceName} (${dateString}, ${summary})`);
+                    
+                    const groupedByAthlete = d3.group(results, d => d.Name);
+                    const sortedAthletes = Array.from(groupedByAthlete.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
-                    athleteEvents.forEach(event => {
-                        const row = tbody.append('tr').attr('class', 'bg-white hover:bg-gray-50');
-                        row.append('td').attr('class', 'border-t');
-                        eventDataColumns.forEach(column => {
-                            const cell = row.append('td')
-                                .attr('class', 'px-6 py-4 border-t');
-                            
-                            if (column === 'Rank') {
-                                let rankText = event[column];
-                                if (event[column] === 1) rankText = '🥇 ' + rankText;
-                                else if (event[column] === 2) rankText = '🥈 ' + rankText;
-                                else if (event[column] === 3) rankText = '🥉 ' + rankText;
-                                cell.text(rankText);
-                            } else {
-                                cell.text(event[column]);
-                            }
+                    sortedAthletes.forEach(([athleteName, athleteEvents]) => {
+                        athleteEvents.sort((a, b) => a.Event.localeCompare(b.Event));
+
+                        tbody.append('tr')
+                            .attr('class', 'athlete-header')
+                            .append('td')
+                            .attr('colspan', eventDataColumns.length + 1)
+                            .attr('class', 'px-6 py-2 font-medium text-gray-800 border-t')
+                            .style('padding-left', '2rem')
+                            .text(athleteName);
+
+                        athleteEvents.forEach(event => {
+                            const row = tbody.append('tr').attr('class', 'bg-white hover:bg-gray-50');
+                            row.append('td').attr('class', 'border-t');
+                            eventDataColumns.forEach(column => {
+                                const cell = row.append('td')
+                                    .attr('class', 'px-6 py-4 border-t');
+                                
+                                if (column === 'Rank') {
+                                    let rankText = event[column];
+                                    if (event[column] === 1) rankText = '🥇 ' + rankText;
+                                    else if (event[column] === 2) rankText = '🥈 ' + rankText;
+                                    else if (event[column] === 3) rankText = '🥉 ' + rankText;
+                                    cell.text(rankText);
+                                } else {
+                                    cell.text(event[column]);
+                                }
+                            });
                         });
                     });
+
+                    if (isInitiallyCollapsed) {
+                        tbody.selectAll('tr:not(.group-header)').style('display', 'none');
+                    }
                 });
+            }
 
-                if (isInitiallyCollapsed) {
-                    tbody.selectAll('tr:not(.group-header)').style('display', 'none');
-                }
-            });
-        }
-
-        // Initial render of the full table, not filtering
-        renderTable(originalData, false);
+            // Initial render of the full table, not filtering
+            renderTable(originalData, false);
+        });
 
     </script>
 </body>
