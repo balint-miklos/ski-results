@@ -7,6 +7,11 @@ repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 pdf_path = os.path.join(repo_root, "1396.pdf")
 txt_path = os.path.join(repo_root, "1396.txt")
 
+api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("GEMINI_API_KEY environment variable is not set.")
+print(f"Using API key: {api_key}")
+
 # Download the PDF
 response = requests.get(url)
 response.raise_for_status()
