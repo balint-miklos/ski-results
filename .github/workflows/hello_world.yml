@@ -3,6 +3,9 @@ name: Hello World Download PDF
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -21,8 +24,10 @@ jobs:
       - name: Run hello_world.py
         run: python scripts/hello_world.py
 
-      - name: Upload 1396.txt as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: 1396-txt
-          path: 1396.txt
+      - name: Commit and push 1396.txt
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add 1396.txt
+          git commit -m "Add/update 1396.txt [auto]" || echo "No changes to commit"
+          git push
