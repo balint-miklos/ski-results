@@ -23,7 +23,7 @@ jobs:
 
       - name: Run hello_world.py
         env:
-          MY_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/hello_world.py
 
       - name: Commit and push 1396.txt
