@@ -1,6 +1,7 @@
 import requests
 import os
 from datetime import datetime
+import google.generativeai as genai
 
 url = "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1396.pdf"
 repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +11,10 @@ txt_path = os.path.join(repo_root, "1396.txt")
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
     raise ValueError("GEMINI_API_KEY environment variable is not set.")
-print(f"Using API key: {api_key}")
+
+# Configure the Gemini API
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Download the PDF
 response = requests.get(url)
@@ -28,3 +32,7 @@ with open(txt_path, "w") as f:
 
 # Delete the PDF file
 os.remove(pdf_path)
+
+# Generate a dad joke using Gemini
+response = model.generate_content("hi, write me a short dad joke")
+print("Gemini dad joke:", response.text)
