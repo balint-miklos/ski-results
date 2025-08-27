@@ -1,0 +1,28 @@
+name: Hello World Download PDF
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run hello_world.py
+        run: python scripts/hello_world.py
+
+      - name: Upload 1396.txt as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 1396-txt
+          path: 1396.txt
