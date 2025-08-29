@@ -61,8 +61,13 @@ def build_prompt(pdf_content, monitoring_targets):
             prompt_parts.append(f"- {athlete_name}")
 
     prompt_parts.extend([
-        "\nFormat the output as a CSV with these exact headers: Name,Category,RaceName,Event,Rank,Date",
-        "The final output should ONLY be the CSV data and nothing else (no introductory text or markdown).",
+        "\nFormat the output as a CSV with these exact headers: **Name,Category,RaceName,Event,Rank,Date**.\n"
+        "The **Date** must be in **YYYY-MM-DD** format.\n"
+        "If the result is 'Did not start' or 'Did not finish', use **DNS** or **DNF** respectively in the Rank column.\n"
+        "If any other information is not available, leave that field blank.\n\n"
+        "Here is an example of the desired output format for a single row:\n"
+        "`Alessio Miggiano,U12,Grossegg-Rennen,Riesenslalom,12,2025-01-25`\n\n"
+        "The final output should **ONLY** be the CSV data and nothing else.",
         {"mime_type": "application/pdf", "data": pdf_content}
     ])
     
