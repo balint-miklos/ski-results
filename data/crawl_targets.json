@@ -98,5 +98,25 @@
       "lastAttemptAt": null,
       "succeededAt": null
     }
+  },
+  {
+    "id": "kwo2025-1050",
+    "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1050.pdf",
+    "status": "queued",
+    "event": {
+      "startDate": "2025-02-01",
+      "endDate": "2025-02-01"
+    },
+    "crawlPolicy": {
+      "validFrom": "2025-02-01T00:00:00Z",
+      "validUntil": "2026-02-01T23:59:59Z"
+    },
+    "tracking": {
+      "createdAt": "2025-08-30T01:07:30Z",
+      "updatedAt": "2025-08-30T01:07:30Z",
+      "attemptCount": 0,
+      "lastAttemptAt": null,
+      "succeededAt": null
+    }
   }
 ]

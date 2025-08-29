@@ -3,6 +3,7 @@ name: Crawl and Update Ski Results
 on:
   workflow_dispatch:
   schedule:
+    # Runs at the top of the hour, every hour, on Thu, Fri, Sat, Sun, and Mon.
     - cron: '0 * * * 0,1,4,5,6'
 
 permissions:
@@ -21,14 +22,15 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests google-generativeai
+        run: pip install requests google-generativeai pandas
 
       - name: Run Extraction Script (Live Run)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/extract_results.py --live-run
 
-      # ... (Merge script would go here) ...
+      - name: Run Merge Script
+        run: python scripts/merge_results.py
 
       - name: Upload Staging Files as Artifact
         uses: actions/upload-artifact@v4
@@ -40,7 +42,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # Add both files that may have changed
           git add data/ski-data.csv
           git add data/crawl_targets.json
           git commit -m "Update data files [auto]" || echo "No changes to commit"
