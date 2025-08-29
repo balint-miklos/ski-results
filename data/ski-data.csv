@@ -1,54 +1,116 @@
 Name,Category,RaceName,Event,Rank,Date
-Baumgartner Elisa,MU12,72. Albisrennen,Riesenslalom,4,2025-01-19
-Baumgartner Melicia,MU14,72. Albisrennen,Riesenslalom,2,2025-01-19
-Seiler Anna,MU14,72. Albisrennen,Riesenslalom,12,2025-01-19
-Börlin Mael,KU12,72. Albisrennen,Riesenslalom,4,2025-01-19
-Rossi Liam,KU12,72. Albisrennen,Riesenslalom,10,2025-01-19
-Seiler Louis,KU16,72. Albisrennen,Riesenslalom,4,2025-01-19
-Hensch Pascal,KU14,72. Albisrennen,Riesenslalom,DNF,2025-01-19
-Simmerle Finn,KU16,72. Albisrennen,Riesenslalom,DNF,2025-01-19
-Kaifer Chiara Luana,Mädchen U12,Zürileu Rennen 2025,Riesenslalom,4,2025-01-11
+Baumgartner Benjamin,Knaben / Garçons 2017,Grand Prix Migros Hoch-Ybrig,Riesenslalom,2.0,01.02.2025
+Czermak Emil,Knaben / Garçons 2017,Grand Prix Migros Hoch-Ybrig,Riesenslalom,215.0,01.02.2025
+Czermak Lara,Mädchen / Filles 2017,Grand Prix Migros Hoch-Ybrig,Riesenslalom,1.0,01.02.2025
+Kaifer Alessia,R3 U14 Mädchen,Volksabfahrt Hoch-Ybrig,Abfahrt,14.0,01.03.2025
+Artho Emma,Mädchen U14,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,24.0,11.01.2025
+Baumgartner Elisa,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,8.0,11.01.2025
+Baumgartner Melicia,Mädchen U14,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,5.0,11.01.2025
+Börlin Mael,Knaben U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,6.0,11.01.2025
+Cavegn Gianna,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,10.0,11.01.2025
+Corthals Marinella,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,16.0,11.01.2025
+Diethelm Livia,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,2.0,11.01.2025
+Eberle Marie-Louise,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,5.0,11.01.2025
+Fuhrer Ramon,Knaben U16,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,40.0,11.01.2025
+Hensch Pascal,Knaben U14,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,24.0,11.01.2025
+Huwiler Eleni,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,15.0,11.01.2025
+Janssen Justin,Knaben U16,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,11.0,11.01.2025
+Kaifer Chiara Luana,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,4.0,11.01.2025
+Kümin Sina,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,14.0,11.01.2025
+Manser Janina,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,1.0,11.01.2025
+Neri Ginevra,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,9.0,11.01.2025
+Nielsen Idun,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,6.0,11.01.2025
+Nora Rossi,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,13.0,11.01.2025
+Peterhans Tyra,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,7.0,11.01.2025
+Roshardt Aliyah,Mädchen U16,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,4.0,11.01.2025
+Rossi Liam,Knaben U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,18.0,11.01.2025
+Ruggeri Tea,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,11.0,11.01.2025
+Sbalchiero Alicia,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,12.0,11.01.2025
+Schober Anouk,Mädchen U12,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,3.0,11.01.2025
+Seiler Anna,Mädchen U14,Zürileu Rennen 2025 - ZSV Living Circle Cup,Riesenslalom,17.0,11.01.2025
+Artho Emma,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,24,2025-01-11
 Baumgartner Elisa,Mädchen U12,Zürileu Rennen 2025,Riesenslalom,8,2025-01-11
 Baumgartner Melicia,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,5,2025-01-11
-Seiler Anna,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,17,2025-01-11
-Artho Emma,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,24,2025-01-11
-Roshardt Aliyah,Mädchen U16,Zürileu Rennen 2025,Riesenslalom,4,2025-01-11
 Börlin Mael,Knaben U12,Zürileu Rennen 2025,Riesenslalom,6,2025-01-11
-Rossi Liam,Knaben U12,Zürileu Rennen 2025,Riesenslalom,18,2025-01-11
-Hensch Pascal,Knaben U14,Zürileu Rennen 2025,Riesenslalom,24,2025-01-11
 Fuhrer Ramon,Knaben U14,Zürileu Rennen 2025,Riesenslalom,40,2025-01-11
-Simmerle Finn,Knaben U16,Zürileu Rennen 2025,Riesenslalom,8,2025-01-11
+Hensch Pascal,Knaben U14,Zürileu Rennen 2025,Riesenslalom,24,2025-01-11
 Janssen Justin,Knaben U16,Zürileu Rennen 2025,Riesenslalom,11,2025-01-11
-Baumgartner Elisa,Mädchen U12,RGZO Slalom,Slalom,2,2025-01-26
-Kaifer Chiara Luana,Mädchen U12,RGZO Slalom,Slalom,6,2025-01-26
-Baumgartner Melicia,Mädchen U14,RGZO Slalom,Slalom,2,2025-01-26
-Seiler Anna,Mädchen U14,RGZO Slalom,Slalom,8,2025-01-26
+Kaifer Chiara Luana,Mädchen U12,Zürileu Rennen 2025,Riesenslalom,4,2025-01-11
+Roshardt Aliyah,Mädchen U16,Zürileu Rennen 2025,Riesenslalom,4,2025-01-11
+Rossi Liam,Knaben U12,Zürileu Rennen 2025,Riesenslalom,18,2025-01-11
+Seiler Anna,Mädchen U14,Zürileu Rennen 2025,Riesenslalom,17,2025-01-11
+Simmerle Finn,Knaben U16,Zürileu Rennen 2025,Riesenslalom,8,2025-01-11
+Baumgartner Elisa,MU12,72. Albisrennen,Riesenslalom,4,2025-01-19
+Baumgartner Melicia,MU14,72. Albisrennen,Riesenslalom,2,2025-01-19
+Börlin Mael,KU12,72. Albisrennen,Riesenslalom,4,2025-01-19
+Hensch Pascal,KU14,72. Albisrennen,Riesenslalom,DNF,2025-01-19
+Rossi Liam,KU12,72. Albisrennen,Riesenslalom,10,2025-01-19
+Seiler Anna,MU14,72. Albisrennen,Riesenslalom,12,2025-01-19
+Seiler Louis,KU16,72. Albisrennen,Riesenslalom,4,2025-01-19
+Simmerle Finn,KU16,72. Albisrennen,Riesenslalom,DNF,2025-01-19
 Artho Emma,Mädchen U14,RGZO Slalom,Slalom,12,2025-01-26
-Roshardt Aliyah,Mädchen U16,RGZO Slalom,Slalom,1,2025-01-26
+Baumgartner Elisa,Mädchen U12,RGZO Slalom,Slalom,2,2025-01-26
+Baumgartner Melicia,Mädchen U14,RGZO Slalom,Slalom,2,2025-01-26
 Börlin Mael,Knaben U12,RGZO Slalom,Slalom,1,2025-01-26
-Rossi Liam,Knaben U12,RGZO Slalom,Slalom,5,2025-01-26
-Hensch Pascal,Knaben U14,RGZO Slalom,Slalom,11,2025-01-26
 Fuhrer Ramon,Knaben U14,RGZO Slalom,Slalom,26,2025-01-26
-Seiler Louis,Knaben U16,RGZO Slalom,Slalom,9,2025-01-26
+Hensch Pascal,Knaben U14,RGZO Slalom,Slalom,11,2025-01-26
 Janssen Justin,Knaben U16,RGZO Slalom,Slalom,10,2025-01-26
+Kaifer Chiara Luana,Mädchen U12,RGZO Slalom,Slalom,6,2025-01-26
+Roshardt Aliyah,Mädchen U16,RGZO Slalom,Slalom,1,2025-01-26
+Rossi Liam,Knaben U12,RGZO Slalom,Slalom,5,2025-01-26
+Seiler Anna,Mädchen U14,RGZO Slalom,Slalom,8,2025-01-26
+Seiler Louis,Knaben U16,RGZO Slalom,Slalom,9,2025-01-26
 Simmerle Finn,Knaben U16,RGZO Slalom,Slalom,DNF,2025-01-26
-Schoch Rahel,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,5,2025-03-16
-Rigó Mikka,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,7,2025-03-16
-Vontobel Gianandrea,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,13,2025-03-16
-Czermak Lara,MU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,1,2025-03-16
-Baumgartner Benjamin,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,3,2025-03-16
-Wälti Lenny,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,8,2025-03-16
-Andracchio Dario,KU9,Chäserrugg Kids Cup,Kombi Race Off-Piste,20,2025-03-16
-Kaifer Cédric Andrin,KU10,Chäserrugg Kids Cup,Kombi Race Off-Piste,9,2025-03-16
-Czermak Emil,KU10,Chäserrugg Kids Cup,Kombi Race Off-Piste,13,2025-03-16
-Hensch Silvan,KU11,Chäserrugg Kids Cup,Kombi Race Off-Piste,3,2025-03-16
-Kempf Felix,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNS,2025-03-16
-Schoch Arianne,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
-Schoch Valerie,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
-Wintsch Leano,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
-Kaifer Chiara Luana,U12,Volksabfahrt Hoch-Ybrig,Abfahrt,2,2025-03-01
 Baumgartner Elisa,U12,Volksabfahrt Hoch-Ybrig,Abfahrt,4,2025-03-01
-Börlin Mael,U12,Volksabfahrt Hoch-Ybrig,Abfahrt,9,2025-03-01
 Baumgartner Melicia,U14,Volksabfahrt Hoch-Ybrig,Abfahrt,3,2025-03-01
+Börlin Mael,U12,Volksabfahrt Hoch-Ybrig,Abfahrt,9,2025-03-01
+Kaifer Chiara Luana,U12,Volksabfahrt Hoch-Ybrig,Abfahrt,2,2025-03-01
 Roshardt Aliyah,U14,Volksabfahrt Hoch-Ybrig,Abfahrt,NS,2025-03-01
 Simmerle Finn,U16,Volksabfahrt Hoch-Ybrig,Abfahrt,7,2025-03-01
+Andracchio Dario,KU9,Chäserrugg Kids Cup,Kombi Race Off-Piste,20,2025-03-16
+Baumgartner Benjamin,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,3,2025-03-16
+Czermak Emil,KU10,Chäserrugg Kids Cup,Kombi Race Off-Piste,13,2025-03-16
+Czermak Lara,MU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,1,2025-03-16
+Hensch Silvan,KU11,Chäserrugg Kids Cup,Kombi Race Off-Piste,3,2025-03-16
+Kaifer Cédric Andrin,KU10,Chäserrugg Kids Cup,Kombi Race Off-Piste,9,2025-03-16
+Kempf Felix,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNS,2025-03-16
+Rigó Mikka,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,7,2025-03-16
+Schoch Arianne,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
+Schoch Rahel,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,5,2025-03-16
+Schoch Valerie,MU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
+Vontobel Gianandrea,KU7,Chäserrugg Kids Cup,Kombi Race Off-Piste,13,2025-03-16
+Wintsch Leano,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,DNF,2025-03-16
+Wälti Lenny,KU8,Chäserrugg Kids Cup,Kombi Race Off-Piste,8,2025-03-16
+Aliyah Roshardt,Mädchen U16,RGZO Jugend Slalom 1,Slalom,1.0,26.01.2025
+Anna Seiler,Mädchen U14,RGZO Jugend Slalom 1,Slalom,8.0,26.01.2025
+Chiara Luana Kaifer,Mädchen U12,RGZO Jugend Slalom 1,Slalom,6.0,26.01.2025
+Elisa Baumgartner,Mädchen U12,RGZO Jugend Slalom 1,Slalom,2.0,26.01.2025
+Emma Artho,Mädchen U14,RGZO Jugend Slalom 1,Slalom,12.0,26.01.2025
+Justin Janssen,Knaben U16,RGZO Jugend Slalom 1,Slalom,10.0,26.01.2025
+Liam Rossi,Knaben U12,RGZO Jugend Slalom 1,Slalom,5.0,26.01.2025
+Louis Seiler,Knaben U16,RGZO Jugend Slalom 1,Slalom,9.0,26.01.2025
+Mael Börlin,Knaben U12,RGZO Jugend Slalom 1,Slalom,1.0,26.01.2025
+Melicia Baumgartner,Mädchen U14,RGZO Jugend Slalom 1,Slalom,2.0,26.01.2025
+Pascal Hensch,Knaben U14,RGZO Jugend Slalom 1,Slalom,11.0,26.01.2025
+Ramon Fuhrer,Knaben U16,RGZO Jugend Slalom 1,Slalom,26.0,26.01.2025
+Alessio Miggiano,,,,,
+Anna Denecke,,,,,
+Benjamin Baumgartner,,,,,
+Cédric Andrin Kaifer,,,,,
+Dario Andracchio,,,,,
+Emil Czermak,,,,,
+Finn Simmerle,,,,,
+Flynn Pfister,,,,,
+Gianandrea Vontobel,,,,,
+Lara Czermak,,,,,
+Lars Stöckenius,,,,,
+Louis Brüngger,,,,,
+Luis Leitheiser,,,,,
+Mikka Rigó,,,,,
+Nevio Boss,,,,,
+Niklas Andris,,,,,
+Robin Tschümperlin,,,,,
+Silvan Hensch,,,,,
+Sophie Stucki,,,,,
+Till Stöckenius,,,,,
+Yann Andris,,,,,
