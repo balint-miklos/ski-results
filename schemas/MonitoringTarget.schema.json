@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Monitoring List",
+  "description": "Defines the list of clubs and athletes to monitor for ski race results.",
+  "type": "object",
+  "properties": {
+    "clubs": {
+      "description": "A list of ski club names to track.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "athletes": {
+      "description": "A list of individual athlete full names to track.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["clubs", "athletes"]
+}

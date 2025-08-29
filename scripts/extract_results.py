@@ -1,96 +1,190 @@
-import requests
 import os
-from datetime import datetime
+import json
+import requests
+import argparse
 import google.generativeai as genai
+from datetime import datetime, timezone
 
-# URL of the PDF file to be processed
-url = "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1396.pdf"
-
-# Define file paths
-# The script's directory for temporary files
-script_dir = os.path.dirname(os.path.abspath(__file__))
-# The parent directory, where ski-data.csv is located
-parent_dir = os.path.dirname(script_dir)
-
-pdf_path = os.path.join(script_dir, "1396.pdf")
-txt_path = os.path.join(script_dir, "1396_log.txt")
-# Correct the path to look one folder up for the CSV file
-csv_path = os.path.join(parent_dir, "ski-data.csv")
+# --- Configuration ---
+# Define file paths using the project's directory structure
+project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CRAWL_TARGETS_PATH = os.path.join(project_dir, "data", "crawl_targets.json")
+MONITORING_TARGETS_PATH = os.path.join(project_dir, "data", "monitoring_targets.json")
+STAGING_DIR = os.path.join(project_dir, "data", "staging")
 
 # --- API Key Configuration ---
-# Retrieve the API key from environment variables for security
 api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    raise ValueError("GEMINI_API_KEY environment variable is not set.")
-
-# Configure the Gemini API with the provided key
-genai.configure(api_key=api_key)
-
-# Initialize the Generative Model
-# Using gemini-1.5-flash as it's a powerful and efficient model for this task
-model = genai.GenerativeModel('gemini-2.5-flash')
-
-# --- File Handling ---
-# Download the PDF from the specified URL
-print(f"Downloading PDF from {url}...")
-response = requests.get(url)
-response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
-with open(pdf_path, "wb") as f:
-    f.write(response.content)
-print(f"PDF saved to {pdf_path}")
-
-# Get file size in kB for logging
-file_size_kb = round(os.path.getsize(pdf_path) / 1024, 2)
-
-# Read the downloaded PDF content in binary mode
-with open(pdf_path, "rb") as pdf_file:
-    pdf_content = pdf_file.read()
-
-# Read the existing CSV file content if it exists, otherwise use an empty string
-csv_content = ""
-if os.path.exists(csv_path):
-    with open(csv_path, "r", encoding='utf-8') as csv_file:
-        csv_content = csv_file.read()
+model = None
+if api_key:
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel('gemini-1.5-flash')
 else:
-    print(f"CSV file not found at {csv_path}. A new one will be created based on the model's output.")
+    print("Warning: GEMINI_API_KEY not set. Script can only run in dry-run mode.")
 
+def load_json_file(file_path):
+    """Loads a generic JSON file and returns its content."""
+    print(f"Loading data from {os.path.basename(file_path)}...")
+    try:
+        with open(file_path, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"Error: {file_path} not found.")
+        return None
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode JSON from {file_path}.")
+        return None
 
-# --- Prompt Preparation for Gemini ---
-# The generate_content method expects a list of parts (strings or file data dicts).
-# This is a more direct and SDK-friendly way to build the prompt.
-prompt_parts = [
-    "You are an expert in data extraction from PDF files.",
-    "Analyze the attached PDF, which contains ski race results.",
-    "Identify all athletes from the club 'Renngruppe Zürcher Oberland'.",
-    "Extract their results and add them as new rows to the following existing CSV data.",
-    "Do not remove any existing results from the CSV.",
-    "The final output should only be the complete, updated CSV data and nothing else.",
-    # For file data, provide a dict with mime_type and the raw data bytes.
-    # The SDK handles the necessary encoding.
-    {
-        "mime_type": "application/pdf",
-        "data": pdf_content
-    },
-    "\n--- Existing CSV Data ---\n",
-    csv_content
-]
+def save_crawl_targets(targets):
+    """Saves the updated list of targets back to the JSON file."""
+    print(f"Saving updated targets to {CRAWL_TARGETS_PATH}...")
+    with open(CRAWL_TARGETS_PATH, 'w') as f:
+        json.dump(targets, f, indent=2)
+    print("Save successful.")
 
-# --- AI Model Interaction ---
-# Generate the new content by sending the parts list to the model
-print("Sending request to Gemini API...")
-response = model.generate_content(prompt_parts)
+def build_prompt(pdf_content, monitoring_targets):
+    """Dynamically builds the prompt for the Gemini API call."""
+    clubs_to_monitor = monitoring_targets.get('clubs', [])
+    athletes_to_monitor = monitoring_targets.get('athletes', [])
+    
+    prompt_parts = [
+        "You are an expert in data extraction from PDF files.",
+        "Analyze the attached PDF, which contains ski race results.",
+        "Extract all results for the following clubs and athletes."
+    ]
 
-# --- Output and Cleanup ---
-# Print the raw text response from the model
-print("\n--- Gemini Response ---\n")
-print(response.text)
+    if clubs_to_monitor:
+        prompt_parts.append(f"Clubs to extract: {', '.join(clubs_to_monitor)}")
+    
+    if athletes_to_monitor:
+        prompt_parts.append("Athletes to extract:")
+        for athlete_name in athletes_to_monitor:
+            prompt_parts.append(f"- {athlete_name}")
 
-# You would typically add code here to save the response.text to your CSV file
-# For example:
-# with open(csv_path, "w", encoding='utf-8') as f:
-#     f.write(response.text)
-# print(f"\nUpdated data saved to {csv_path}")
+    prompt_parts.extend([
+        "\nFormat the output as a CSV with these exact headers: Name,Category,RaceName,Event,Rank,Date",
+        "The final output should ONLY be the CSV data and nothing else (no introductory text or markdown).",
+        {"mime_type": "application/pdf", "data": pdf_content}
+    ])
+    
+    return prompt_parts
 
-# Delete the temporary PDF file
-os.remove(pdf_path)
-print(f"\nTemporary file {pdf_path} has been deleted.")
+def print_prompt_for_dry_run(prompt_parts):
+    """Prints a readable version of the generated prompt for a dry run."""
+    print("\n--- DRY RUN: Generated Prompt ---")
+    for part in prompt_parts:
+        if isinstance(part, str):
+            print(part)
+        elif isinstance(part, dict) and 'data' in part:
+            size_in_kb = round(len(part['data']) / 1024, 2)
+            print(f"[PDF content of type {part['mime_type']} ({size_in_kb} kB) would be attached here]")
+    print("---------------------------------\n")
+
+def process_target(target, monitoring_targets, is_dry_run=True):
+    """
+    Downloads, processes a single crawl target, and saves the result to the staging area.
+    Returns True on success and False on failure.
+    """
+    target_id = target.get("id")
+    url = target.get("url")
+    if not all([target_id, url]):
+        print(f"Skipping invalid target: {target}")
+        return False
+
+    print(f"\n--- Processing Target ID: {target_id} ---")
+    try:
+        print(f"Downloading PDF from {url}...")
+        response = requests.get(url)
+        response.raise_for_status()
+        pdf_content = response.content
+        print("Download successful.")
+
+        csv_output = ""
+        if is_dry_run:
+            print("DRY RUN: Skipping Gemini API call.")
+            prompt_parts = build_prompt(pdf_content, monitoring_targets)
+            print_prompt_for_dry_run(prompt_parts)
+            csv_output = "Name,Category,RaceName,Event,Rank,Date\nJohn Doe,U16,Dry Run Race,Slalom,1,2025-01-01\n"
+        else:
+            if not model:
+                print("Error: Live run requested, but Gemini model is not initialized.")
+                return False
+            prompt_parts = build_prompt(pdf_content, monitoring_targets)
+            print("LIVE RUN: Sending request to Gemini API...")
+            response = model.generate_content(prompt_parts)
+            csv_output = response.text
+            print("Gemini API call successful.")
+
+        os.makedirs(STAGING_DIR, exist_ok=True)
+        staging_file_path = os.path.join(STAGING_DIR, f"{target_id}.csv")
+        with open(staging_file_path, "w", encoding='utf-8') as f:
+            f.write(csv_output)
+        print(f"Successfully saved results to {staging_file_path}")
+        return True
+
+    except Exception as e:
+        print(f"An error occurred while processing {target_id}: {e}")
+        return False
+
+def main():
+    """Main function to parse arguments and run the crawler."""
+    parser = argparse.ArgumentParser(description="Extract ski race results from PDFs.")
+    parser.add_argument(
+        '--live-run',
+        action='store_true',
+        help="Run in live mode, making actual calls to the Gemini API. Default is a dry run."
+    )
+    args = parser.parse_args()
+    is_dry_run = not args.live_run
+    
+    mode = "LIVE" if not is_dry_run else "DRY-RUN"
+    print(f"--- Running in {mode} mode. ---")
+
+    crawl_targets = load_json_file(CRAWL_TARGETS_PATH)
+    monitoring_targets = load_json_file(MONITORING_TARGETS_PATH)
+
+    if not crawl_targets or not monitoring_targets:
+        print("Could not load necessary target files. Exiting.")
+        return
+    
+    now_utc = datetime.now(timezone.utc)
+    
+    for target in crawl_targets:
+        target_id = target.get("id")
+        status = target.get("status")
+        policy = target.get("crawlPolicy", {})
+        
+        if status not in ['queued', 'failed']:
+            print(f"\nSkipping target {target_id}: status is '{status}'.")
+            continue
+            
+        valid_from_str = policy.get('validFrom')
+        valid_until_str = policy.get('validUntil')
+        
+        if valid_from_str and valid_until_str:
+            valid_from = datetime.fromisoformat(valid_from_str)
+            valid_until = datetime.fromisoformat(valid_until_str)
+            
+            if not (valid_from <= now_utc <= valid_until):
+                print(f"\nSkipping target {target_id}: current time is outside the valid crawl window.")
+                continue
+
+        success = process_target(target, monitoring_targets, is_dry_run)
+
+        if not is_dry_run:
+            now_iso = now_utc.isoformat()
+            target['tracking']['lastAttemptAt'] = now_iso
+            target['tracking']['updatedAt'] = now_iso
+            target['tracking']['attemptCount'] = target.get('tracking', {}).get('attemptCount', 0) + 1
+            if success:
+                target['status'] = 'processed'
+                target['tracking']['succeededAt'] = now_iso
+            else:
+                target['status'] = 'failed'
+    
+    if not is_dry_run:
+        save_crawl_targets(crawl_targets)
+    
+    print("\n--- Crawl process finished. ---")
+
+if __name__ == "__main__":
+    main()
