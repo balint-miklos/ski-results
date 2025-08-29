@@ -29,14 +29,14 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/extract_results.py --live-run
 
-      - name: Run Merge Script
-        run: python scripts/merge_results.py
-
-      - name: Upload Staging Files as Artifact
+      - name: Upload Staging Files as Artifact for Debugging
         uses: actions/upload-artifact@v4
         with:
           name: staging-files-${{ github.run_id }}
           path: data/staging/
+
+      - name: Run Merge Script
+        run: python scripts/merge_results.py
 
       - name: Commit and push changes
         run: |
