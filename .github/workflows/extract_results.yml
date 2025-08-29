@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: pip install requests google-generativeai
 
-      - name: Run hello_world.py
+      - name: Run extract_results.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/hello_world.py
+        run: python scripts/extract_results.py
 
       - name: Commit and push 1396.txt
         run: |
