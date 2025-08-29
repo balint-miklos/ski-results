@@ -2,7 +2,7 @@
   {
     "id": "kwo2025-1373",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1373.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-01-11",
       "endDate": "2025-01-11"
@@ -22,7 +22,7 @@
   {
     "id": "kwo2025-1388",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-01-19",
       "endDate": "2025-01-19"
@@ -42,7 +42,7 @@
   {
     "id": "kwo2025-1380",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1380.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-01-26",
       "endDate": "2025-01-26"
@@ -62,7 +62,7 @@
   {
     "id": "kwo2025-1105",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1105.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-03-16",
       "endDate": "2025-03-16"
@@ -82,7 +82,7 @@
   {
     "id": "kwo2025-1396",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1396.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-01-25",
       "endDate": "2025-01-25"
@@ -102,7 +102,7 @@
   {
     "id": "kwo2025-1050",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1050.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-02-01",
       "endDate": "2025-02-01"
