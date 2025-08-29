@@ -1,4 +1,4 @@
-name: Hello World Download PDF
+name: Crawl, Extract and Combine Results
 
 on:
   workflow_dispatch:
