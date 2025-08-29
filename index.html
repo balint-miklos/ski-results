@@ -54,7 +54,7 @@
     <p id="last-updated" class="text-sm text-gray-500 mt-8 text-center"></p>
     <script>
         // --- EXISTING D3 + FILTERING SCRIPT ---
-        const csvUrl = './ski-data.csv';
+        const csvUrl = './data/ski-data.csv';
         d3.csv(csvUrl, d => {
             const rankAsNumber = parseInt(d.Rank, 10);
             d.Rank = isNaN(rankAsNumber) ? d.Rank : rankAsNumber;

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crawl Target",
+  "description": "Describes a URL to be crawled for event data, including its policy and tracking status.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for the crawl target record (UUID).",
+      "type": "string",
+      "format": "uuid"
+    },
+    "url": {
+      "description": "The full URL to be crawled.",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "The current processing status of the crawl target.",
+      "type": "string",
+      "enum": ["queued", "crawling", "processed", "failed"]
+    },
+    "event": {
+      "description": "Details about the real-world event.",
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "description": "The start date of the event in YYYY-MM-DD format.",
+          "type": "string",
+          "format": "date"
+        },
+        "endDate": {
+          "description": "The end date of the event in YYYY-MM-DD format.",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": ["startDate", "endDate"]
+    },
+    "crawlPolicy": {
+      "description": "Defines the rules and time window for when crawling is permitted.",
+      "type": "object",
+      "properties": {
+        "validFrom": {
+          "description": "The ISO 8601 timestamp when crawling becomes permissible.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "validUntil": {
+          "description": "The ISO 8601 timestamp after which the system should stop trying to crawl.",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["validFrom", "validUntil"]
+    },
+    "tracking": {
+      "description": "Metadata logging the history of crawl attempts.",
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "The ISO 8601 timestamp when this record was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "description": "The ISO 8601 timestamp when this record was last updated.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "attemptCount": {
+          "description": "The number of times a crawl has been attempted.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "lastAttemptAt": {
+          "description": "The ISO 8601 timestamp of the most recent crawl attempt.",
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "succeededAt": {
+          "description": "The ISO 8601 timestamp when the crawl was successfully completed.",
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      },
+      "required": ["createdAt", "updatedAt", "attemptCount"]
+    }
+  },
+  "required": ["id", "url", "status", "event", "crawlPolicy", "tracking"]
+}
