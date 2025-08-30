@@ -22,7 +22,7 @@ SYSTEM_INSTRUCTION = """You are an expert data extraction agent specializing in 
 3.  **Strict Formatting:** You must adhere to the following CSV output format.
 
 **CSV Output Specification:**
--   **Headers:** The output must use these exact headers: `Name,Category,RaceName,Event,Location,Rank,Date`
+-   **Headers:** The very first line of your response must be the CSV header row: `Name,Category,RaceName,Event,Location,Rank,Date`. Do not omit it.
 -   **Date Format:** The `Date` column must always be in `YYYY-MM-DD` format.
 -   **Special Ranks:** Use `DNS` for 'Did not start' and `DNF` for 'Did not finish' in the `Rank` column.
 -   **Missing Data:** If any information for a field is not available in the source document, leave that field blank in the CSV.
