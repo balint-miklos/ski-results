@@ -102,7 +102,7 @@
   {
     "id": "kwo2025-1050",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1050.pdf",
-    "status": "processed",
+    "status": "queued",
     "event": {
       "startDate": "2025-02-01",
       "endDate": "2025-02-01"
