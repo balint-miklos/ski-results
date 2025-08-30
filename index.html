@@ -27,7 +27,7 @@
 
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">RGZO Ergebnisse 🏆</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">RGZO Ergebnisse</h1>
             <p class="text-md text-gray-600 mt-2">Rennergebnisse nach Anlass und Athlet gruppiert. Zum Erweitern oder Reduzieren auf die Rennüberschriften klicken.</p>
         </header>
 
@@ -146,27 +146,25 @@
 
                     const uniqueDates = [...new Set(results.map(r => r.Date))].sort();
                     const location = results.length > 0 ? results[0].Location : '';
-                    let dateAndLocationString = '';
+                    let dateString = '';
 
                     if (uniqueDates.length > 0) {
                         const firstDate = new Date(uniqueDates[0] + 'T00:00:00Z');
                         const month = firstDate.toLocaleString('de-CH', { month: 'short', timeZone: 'UTC' });
                         const year = firstDate.getUTCFullYear();
                         const firstDay = firstDate.getUTCDate();
-                        let datePart;
-
+                        
                         if (uniqueDates.length > 1) {
                             const lastDate = new Date(uniqueDates[uniqueDates.length - 1] + 'T00:00:00Z');
                             const lastDay = lastDate.getUTCDate();
-                            datePart = `${firstDay}-${lastDay} ${month} ${year}`;
+                            dateString = `${firstDay}-${lastDay} ${month} ${year}`;
                         } else {
-                            datePart = `${firstDay} ${month} ${year}`;
+                            dateString = `${firstDay} ${month} ${year}`;
                         }
-                        dateAndLocationString = location ? `${datePart}, ${location}` : datePart;
-                    } else {
-                        dateAndLocationString = location;
                     }
                     
+                    const locationAndDateString = [location, dateString].filter(Boolean).join(', ');
+
                     const raceHeader = tbody.append('tr')
                         .attr('class', 'group-header border-t border-gray-200 cursor-pointer hover:bg-gray-50')
                         .on('click', function() {
@@ -182,20 +180,35 @@
                         .attr('class', 'px-6 py-3');
 
                     const headerContent = `
-                    <div class="flex flex-col w-full">
-                        <!-- Row 1: Race Name and Date -->
-                        <div class="flex justify-between items-center w-full">
-                            <div class="flex items-center gap-3">
-                                <span class="indicator text-gray-400 w-4 text-center font-semibold text-lg">${isInitiallyCollapsed ? '▸' : '▾'}</span>
+                    <div class="flex items-start gap-3 w-full">
+                        <span class="indicator text-gray-400 w-4 text-center font-semibold text-lg pt-1 sm:pt-0">${isInitiallyCollapsed ? '▸' : '▾'}</span>
+                        
+                        <div class="flex flex-col sm:flex-row sm:justify-between w-full sm:items-center">
+                            <!-- Left side: Contains Race Name. For desktop, also contains Results -->
+                            <div class="flex flex-col">
                                 <span class="race-name text-lg font-bold text-gray-900">${raceName}</span>
+                                <!-- Results (Desktop Only) -->
+                                <div class="pt-1 hidden sm:block">
+                                    <span class="race-results text-sm text-gray-600">
+                                        <span class="font-medium text-gray-500">Resultate: </span>${summary}
+                                    </span>
+                                </div>
                             </div>
-                            <span class="race-date text-sm font-medium text-gray-500 whitespace-nowrap ml-4">${dateAndLocationString}</span>
-                        </div>
-                        <!-- Row 2: Results -->
-                        <div class="pl-7 pt-1">
-                            <span class="race-results text-sm text-gray-600">
-                                <span class="font-medium text-gray-500">Resultate: </span>${summary}
-                            </span>
+                            
+                            <!-- Mobile Layout Section: Appears below Name, hidden on desktop -->
+                            <div class="sm:hidden">
+                                <span class="text-sm text-gray-500">${locationAndDateString}</span>
+                                <div class="pt-1">
+                                    <span class="race-results text-sm text-gray-600">
+                                        <span class="font-medium text-gray-500">Resultate: </span>${summary}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Right side: Location and Date (Desktop Only) -->
+                            <div class="hidden sm:block sm:text-right">
+                                <span class="text-sm text-gray-500 sm:font-medium sm:whitespace-nowrap sm:ml-4">${locationAndDateString}</span>
+                            </div>
                         </div>
                     </div>`;
                     raceHeaderCell.html(headerContent);
