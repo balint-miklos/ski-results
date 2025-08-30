@@ -51,7 +51,7 @@ if api_key:
     genai.configure(api_key=api_key)
     # The system_instruction is passed to the model at initialization.
     model = genai.GenerativeModel(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
         system_instruction=SYSTEM_INSTRUCTION
     )
 else:
