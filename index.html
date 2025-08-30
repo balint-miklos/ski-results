@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ski Race Results ⛷️</title>
     <!-- D3.js library from a CDN -->
@@ -12,25 +12,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-        }
-        .group-header {
-            background-color: #e5e7eb;
-            font-weight: 700;
-            color: #1f2937;
-            cursor: pointer;
+            scroll-behavior: smooth;
         }
         .athlete-header {
-            background-color: #f3f4f6;
+            background-color: #f3f4f6; /* gray-100 */
             font-weight: 600;
-        }
-        .indicator {
-            display: inline-block;
-            width: 1.5em;
-            text-align: center;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 p-4 sm:p-8">
+<body class="bg-gray-50 text-gray-800 p-4 sm:p-8">
 
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-8">
@@ -40,21 +30,22 @@
 
         <!-- Filter input box -->
         <div class="mb-8 max-w-md mx-auto">
-            <input type="text" id="filter-input" placeholder="Filter results..." class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="text" id="filter-input" placeholder="Filter by athlete, race, medals, etc..." class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         
-        <!-- This empty table element is where D3 will render the data -->
+        <!-- This empty div is where D3 will render the data table -->
         <div class="bg-white rounded-lg shadow-md overflow-x-auto">
             <table id="results-table" class="w-full text-sm text-left text-gray-500">
-                <!-- D3 will generate the content here -->
+                <!-- D3 will populate the thead and tbody here -->
             </table>
         </div>
     </div>
 
-    <p id="last-updated" class="text-sm text-gray-500 mt-8 text-center"></p>
+    <p id="last-updated" class="text-sm text-gray-500 mt-8 text-center">Last update: ...</p>
+    
     <script>
-        // --- EXISTING D3 + FILTERING SCRIPT ---
         const csvUrl = './data/ski-data.csv';
+
         d3.csv(csvUrl, d => {
             const rankAsNumber = parseInt(d.Rank, 10);
             d.Rank = isNaN(rankAsNumber) ? d.Rank : rankAsNumber;
@@ -93,6 +84,7 @@
 
             function renderTable(data, isFiltering) {
                 table.html('');
+
                 function getStartOfWeekUTC(dateStr) {
                     const d = new Date(dateStr);
                     const day = d.getUTCDay();
@@ -119,7 +111,7 @@
                 const groupedByRace = d3.group(data, d => d.RaceName);
                 const raceEntries = Array.from(groupedByRace.entries());
 
-                raceEntries.sort(([raceNameA, resultsA], [raceNameB, resultsB]) => {
+                raceEntries.sort(([, resultsA], [, resultsB]) => {
                     const maxDateA = d3.max(resultsA, d => d.Date);
                     const maxDateB = d3.max(resultsB, d => d.Date);
                     return new Date(maxDateB) - new Date(maxDateA);
@@ -140,6 +132,7 @@
                     if (isInitiallyCollapsed) {
                         tbody.classed('collapsed', true);
                     }
+                    
                     const ranks = results.map(r => r.Rank).filter(r => typeof r === 'number').sort((a, b) => a - b);
                     const summary = ranks.map(rank => {
                         if (rank === 1) return '🥇';
@@ -163,22 +156,42 @@
                             dateString = `${firstDay} ${month} ${year}`;
                         }
                     }
-
+                    
                     const raceHeader = tbody.append('tr')
-                        .attr('class', 'group-header')
+                        .attr('class', 'group-header border-t border-gray-200 cursor-pointer hover:bg-gray-50')
                         .on('click', function() {
                             const isCollapsed = tbody.classed('collapsed');
                             tbody.classed('collapsed', !isCollapsed);
                             tbody.selectAll('tr:not(.group-header)')
-                                 .style('display', isCollapsed ? 'table-row' : 'none');
-                            d3.select(this).select('.indicator').text(isCollapsed ? '[-]' : '[+]');
+                                .style('display', isCollapsed ? 'table-row' : 'none');
+                            d3.select(this).select('.indicator').text(isCollapsed ? '▸' : '▾');
                         });
-                    
-                    raceHeader.append('td')
+
+                    const raceHeaderCell = raceHeader.append('td')
                         .attr('colspan', eventDataColumns.length + 1)
-                        .attr('class', 'px-6 py-3 text-lg')
-                        .html(`<span class="indicator">${isInitiallyCollapsed ? '[+]' : '[-]'}</span>${raceName} (${dateString}, ${summary})`);
-                    
+                        .attr('class', 'px-6 py-3');
+
+                    // --- NEW TWO-ROW HEADER LAYOUT (OPTION A) ---
+                    const headerContent = `
+                    <div class="flex flex-col w-full">
+                        <!-- Row 1: Race Name and Date -->
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-3">
+                                <span class="indicator text-gray-400 w-4 text-center font-semibold text-lg">${isInitiallyCollapsed ? '▸' : '▾'}</span>
+                                <span class="race-name text-lg font-bold text-gray-900">${raceName}</span>
+                            </div>
+                            <span class="race-date text-sm font-medium text-gray-500 whitespace-nowrap ml-4">${dateString}</span>
+                        </div>
+                        <!-- Row 2: Results -->
+                        <div class="pl-7 pt-1">
+                            <span class="race-results text-sm text-gray-600">
+                                <span class="font-medium text-gray-500">Results: </span>${summary}
+                            </span>
+                        </div>
+                    </div>`;
+                    raceHeaderCell.html(headerContent);
+                    // --- END OF MODIFIED SECTION ---
+
                     const groupedByAthlete = d3.group(results, d => d.Name);
                     const sortedAthletes = Array.from(groupedByAthlete.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
@@ -222,7 +235,6 @@
             renderTable(originalData, false);
         });
 
-        // --- Fetch last commit date for ski-data.csv from GitHub API and show it in Switzerland time zone (English, no zone label) ---
         (function() {
             const repoOwner = 'balint-miklos';
             const repoName = 'ski-results';
@@ -234,27 +246,20 @@
                 .then(commits => {
                     if (commits && commits.length > 0) {
                         const commitDate = new Date(commits[0].commit.author.date);
-                        const options = {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'short',
-                            day: '2-digit',
-                            timeZone: timeZone
-                        };
+                        const options = { weekday: 'long', year: 'numeric', month: 'short', day: '2-digit', timeZone: timeZone };
                         const timeString = commitDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: timeZone });
                         const dateString = commitDate.toLocaleDateString('en-GB', options);
-                        document.getElementById('last-updated').textContent =
-                            `Last update: ${timeString} on ${dateString}`;
+                        document.getElementById('last-updated').textContent = `Last update: ${timeString} on ${dateString}`;
                     } else {
-                        document.getElementById('last-updated').textContent =
-                            "Last update: (unknown)";
+                        document.getElementById('last-updated').textContent = "Last update: (unknown)";
                     }
                 })
                 .catch(() => {
-                    document.getElementById('last-updated').textContent =
-                        "Last update: (could not fetch)";
+                    document.getElementById('last-updated').textContent = "Last update: (could not fetch)";
                 });
         })();
     </script>
+
 </body>
 </html>
+
