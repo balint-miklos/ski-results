@@ -1,9 +1,9 @@
-Category,Rang,St-Nr.,Code,Name und Vorname,Jahrgang,Verband,Verein,Zeiten,Punkte,ResultUrl
-MU12,4,5,95813,Elisa Baumgartner,2013,ZSV,Renngruppe Zürcher Oberland,1:21.52,126.60,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-MU14,2,30,95814,Melicia Baumgartner,2011,ZSV,Renngruppe Zürcher Oberland,1:14.45,28.02,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-MU14,12,19,95832,Anna Seiler,2012,ZSV,Renngruppe Zürcher Oberland,1:20.63,114.19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-MU14,82,95822,Pascal Hensch,2012,ZSV,Renngruppe Zürcher Oberland,,,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-KU12,4,57,95816,Mael Börlin,2013,ZSV,Renngruppe Zürcher Oberland,1:18.20,93.41,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-KU12,10,61,95830,Liam Rossi,2013,ZSV,Renngruppe Zürcher Oberland,1:26.62,212.22,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-MU16,117,95833,Finn Simmerle,2009,ZSV,Renngruppe Zürcher Oberland,,,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
-KU16,4,119,95831,Louis Seiler,2009,ZSV,Renngruppe Zürcher Oberland,1:15.67,57.71,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Name,Category,RaceName,Event,Location,Rank,Date,ResultUrl
+Elisa Baumgartner,MU12,72. Albisrennen,Riesenslalom,Hoch-Ybrig,4,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Melicia Baumgartner,MU14,72. Albisrennen,Riesenslalom,Hoch-Ybrig,2,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Anna Seiler,MU14,72. Albisrennen,Riesenslalom,Hoch-Ybrig,12,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Mael Börlin,KU12,72. Albisrennen,Riesenslalom,Hoch-Ybrig,4,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Liam Rossi,KU12,72. Albisrennen,Riesenslalom,Hoch-Ybrig,10,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Louis Seiler,KU16,72. Albisrennen,Riesenslalom,Hoch-Ybrig,4,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Pascal Hensch,,72. Albisrennen,Riesenslalom,Hoch-Ybrig,82,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
+Finn Simmerle,,72. Albisrennen,Riesenslalom,Hoch-Ybrig,117,2025-01-19,https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1388.pdf
