@@ -38,7 +38,7 @@ USER_PROMPT_TEMPLATE = """Analyze the following document and extract the ski rac
 **Extraction Criteria:**
 Extract all results that meet **either** of the following conditions:
 1.  The athlete's listed club is {clubs_list}.
-2.  The athlete's name appears on the following list:
+2.  The athlete's name appears on the following list. Note that names in the document may appear as 'FirstName LastName' or 'LastName FirstName'; both formats should be considered a match.
 {athletes_list}
 
 Generate the CSV output according to your system instructions.

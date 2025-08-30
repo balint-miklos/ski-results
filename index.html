@@ -59,13 +59,18 @@
             
             const eventDataColumns = originalData.columns.filter(d => !['RaceName', 'Name', 'Date', 'Location', 'ResultUrl'].includes(d));
 
+            const normalizeText = (str) => {
+                if (!str) return '';
+                return str.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            };
+
             filterInput.on('input', function() {
-                const filterValue = this.value.toLowerCase();
+                const filterValue = normalizeText(this.value);
                 if (filterValue) {
                     const filteredData = originalData.filter(row => {
                         const columnsToFilter = ['Name', 'Category', 'RaceName', 'Event', 'Rank', 'Date', 'Location'];
                         const substringMatch = columnsToFilter.some(column => 
-                            String(row[column]).toLowerCase().includes(filterValue)
+                            normalizeText(row[column]).includes(filterValue)
                         );
                         let specialMatch = false;
                         if ((filterValue === 'medaille' || filterValue === 'medaillen') && (row.Rank >= 1 && row.Rank <= 3)) {
@@ -166,7 +171,7 @@
                     const locationAndDateString = [location, dateString].filter(Boolean).join(', ');
 
                     const raceHeader = tbody.append('tr')
-                        .attr('class', 'group-header border-t border-gray-200 cursor-pointer hover:bg-gray-50')
+                        .attr('class', 'group-header bg-sky-50 border-t border-gray-200 cursor-pointer hover:bg-sky-100')
                         .on('click', function() {
                             const isCollapsed = tbody.classed('collapsed');
                             tbody.classed('collapsed', !isCollapsed);
