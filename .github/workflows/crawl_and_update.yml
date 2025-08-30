@@ -29,12 +29,6 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/extract_results.py --live-run
 
-      - name: Upload Staging Files as Artifact for Debugging
-        uses: actions/upload-artifact@v4
-        with:
-          name: staging-files-${{ github.run_id }}
-          path: data/staging/
-
       - name: Run Merge Script
         run: python scripts/merge_results.py
 
@@ -42,7 +36,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Add the master data file, the updated crawl targets, and all new/updated staging CSVs
           git add data/ski-data.csv
           git add data/crawl_targets.json
+          git add data/staging/*.csv
           git commit -m "Update data files [auto]" || echo "No changes to commit"
           git push

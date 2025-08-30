@@ -17,9 +17,41 @@ api_key = os.environ.get("GEMINI_API_KEY")
 model = None
 if api_key:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    # The system_instruction parameter is not supported for gemini-1.5-flash
+    model = genai.GenerativeModel('gemini-1.5-pro-latest')
 else:
     print("Warning: GEMINI_API_KEY not set. Script can only run in dry-run mode.")
+
+# --- System & User Prompt Definitions ---
+
+SYSTEM_INSTRUCTION = """You are an expert data extraction agent specializing in parsing ski race results from documents. Your sole purpose is to extract requested information accurately and format it into clean, machine-readable CSV data.
+
+**Core Capabilities & Rules:**
+1.  **Context Awareness:** You understand that contextual information like `RaceName`, `Date`, and `Location` is often located in the page header, and a `Category` (e.g., U12, U14) is often a sub-header for a group of athletes. You must correctly associate this context with each individual result row.
+2.  **Accuracy:** Every row of your CSV output must correspond directly to an actual result entry found within the provided document. Do not invent or infer data that is not present.
+3.  **Strict Formatting:** You must adhere to the following CSV output format.
+
+**CSV Output Specification:**
+-   **Headers:** The output must use these exact headers: `Name,Category,RaceName,Event,Location,Rank,Date`
+-   **Date Format:** The `Date` column must always be in `YYYY-MM-DD` format.
+-   **Special Ranks:** Use `DNS` for 'Did not start' and `DNF` for 'Did not finish' in the `Rank` column.
+-   **Missing Data:** If any information for a field is not available in the source document, leave that field blank in the CSV.
+-   **Example Row:** `Alessio Miggiano,U12,Grossegg-Rennen,Riesenslalom,Hoch-Ybrig,12,2025-01-25`
+
+**Final Output Constraint:**
+-   You must **ONLY** provide the raw CSV data as your final response. Do not include any introductory text, explanations, summaries, or markdown formatting like ` ```csv`.
+"""
+
+USER_PROMPT_TEMPLATE = """Analyze the following document and extract the ski race results based on the criteria below.
+
+**Extraction Criteria:**
+Extract all results that meet **either** of the following conditions:
+1.  The athlete's listed club is {clubs_list}.
+2.  The athlete's name appears on the following list:
+{athletes_list}
+
+Generate the CSV output according to your system instructions.
+"""
 
 def load_json_file(file_path):
     """Loads a generic JSON file and returns its content."""
@@ -41,47 +73,37 @@ def save_crawl_targets(targets):
         json.dump(targets, f, indent=2)
     print("Save successful.")
 
-def build_prompt(pdf_content, monitoring_targets):
-    """Dynamically builds the prompt for the Gemini API call."""
+def build_user_prompt(monitoring_targets):
+    """Dynamically builds the user prompt from the template."""
     clubs_to_monitor = monitoring_targets.get('clubs', [])
     athletes_to_monitor = monitoring_targets.get('athletes', [])
-    
-    prompt_parts = [
-        "You are an expert in data extraction from PDF files.",
-        "Analyze the attached PDF, which contains ski race results.",
-        "Extract all results for the following clubs and athletes."
-    ]
 
-    if clubs_to_monitor:
-        prompt_parts.append(f"Clubs to extract: {', '.join(clubs_to_monitor)}")
-    
-    if athletes_to_monitor:
-        prompt_parts.append("Athletes to extract:")
-        for athlete_name in athletes_to_monitor:
-            prompt_parts.append(f"- {athlete_name}")
+    # Format clubs for the prompt, including potential abbreviations.
+    club_strings = []
+    for club in clubs_to_monitor:
+        if club == "Renngruppe Zürcher Oberland":
+            club_strings.append("**Renngruppe Zürcher Oberland** (or its abbreviation **RG Zürcher Oberland**)")
+        else:
+            club_strings.append(f"**{club}**")
+    formatted_clubs = ", ".join(club_strings) if club_strings else "any specified clubs"
 
-    prompt_parts.extend([
-        "\nFormat the output as a CSV with these exact headers: **Name,Category,RaceName,Event,Rank,Date**.\n"
-        "The **Date** must be in **YYYY-MM-DD** format.\n"
-        "If the result is 'Did not start' or 'Did not finish', use **DNS** or **DNF** respectively in the Rank column.\n"
-        "If any other information is not available, leave that field blank.\n\n"
-        "Here is an example of the desired output format for a single row:\n"
-        "`Alessio Miggiano,U12,Grossegg-Rennen,Riesenslalom,12,2025-01-25`\n\n"
-        "The final output should **ONLY** be the CSV data and nothing else.",
-        {"mime_type": "application/pdf", "data": pdf_content}
-    ])
-    
-    return prompt_parts
+    # Format athletes as a bulleted list
+    formatted_athletes = "\n".join([f"    - {name}" for name in athletes_to_monitor])
 
-def print_prompt_for_dry_run(prompt_parts):
+    return USER_PROMPT_TEMPLATE.format(
+        clubs_list=formatted_clubs,
+        athletes_list=formatted_athletes
+    )
+
+def print_prompt_for_dry_run(user_prompt, pdf_content):
     """Prints a readable version of the generated prompt for a dry run."""
     print("\n--- DRY RUN: Generated Prompt ---")
-    for part in prompt_parts:
-        if isinstance(part, str):
-            print(part)
-        elif isinstance(part, dict) and 'data' in part:
-            size_in_kb = round(len(part['data']) / 1024, 2)
-            print(f"[PDF content of type {part['mime_type']} ({size_in_kb} kB) would be attached here]")
+    print("\n[SYSTEM INSTRUCTION]")
+    print(SYSTEM_INSTRUCTION)
+    print("\n[USER PROMPT]")
+    print(user_prompt)
+    size_in_kb = round(len(pdf_content) / 1024, 2)
+    print(f"\n[PDF content ({size_in_kb} kB) would be attached here]")
     print("---------------------------------\n")
 
 def process_target(target, monitoring_targets, is_dry_run=True):
@@ -101,23 +123,53 @@ def process_target(target, monitoring_targets, is_dry_run=True):
         response = requests.get(url)
         response.raise_for_status()
         pdf_content = response.content
+        pdf_file = {"mime_type": "application/pdf", "data": pdf_content}
         print("Download successful.")
 
-        csv_output = ""
+        csv_from_ai = ""
+        user_prompt = build_user_prompt(monitoring_targets)
+
         if is_dry_run:
             print("DRY RUN: Skipping Gemini API call.")
-            prompt_parts = build_prompt(pdf_content, monitoring_targets)
-            print_prompt_for_dry_run(prompt_parts)
-            csv_output = "Name,Category,RaceName,Event,Rank,Date\nJohn Doe,U16,Dry Run Race,Slalom,1,2025-01-01\n"
+            print_prompt_for_dry_run(user_prompt, pdf_content)
+            csv_from_ai = "Name,Category,RaceName,Event,Location,Rank,Date\nJohn Doe,U16,Dry Run Race,Slalom,Dry Run Location,1,2025-01-01"
         else:
             if not model:
                 print("Error: Live run requested, but Gemini model is not initialized.")
                 return False
-            prompt_parts = build_prompt(pdf_content, monitoring_targets)
+
             print("LIVE RUN: Sending request to Gemini API...")
-            response = model.generate_content(prompt_parts)
-            csv_output = response.text
+            response = model.generate_content(
+                [user_prompt, pdf_file],
+                generation_config={"response_mime_type": "text/plain"}
+            )
+            csv_from_ai = response.text
             print("Gemini API call successful.")
+
+        # Clean the response in case it's wrapped in a markdown block
+        cleaned_csv = csv_from_ai.strip()
+        if cleaned_csv.startswith("```csv"):
+            cleaned_csv = cleaned_csv.lstrip("```csv\n")
+        elif cleaned_csv.startswith("```"):
+            cleaned_csv = cleaned_csv.lstrip("```\n")
+        
+        if cleaned_csv.endswith("```"):
+            cleaned_csv = cleaned_csv.rstrip("\n```")
+        
+        cleaned_csv = cleaned_csv.strip()
+
+        # Post-process the CSV data to add the ResultUrl column
+        lines = cleaned_csv.split('\n')
+        csv_output = ""
+        if not lines or not lines[0]:
+            print("Warning: Received empty or invalid CSV data from AI. Staging file will be empty.")
+        else:
+            header = lines[0].strip() + ",ResultUrl"
+            rows = [header]
+            for line in lines[1:]:
+                if line.strip():  # Avoid adding empty lines
+                    rows.append(line.strip() + f",{url}")
+            csv_output = "\n".join(rows) + "\n"
 
         os.makedirs(STAGING_DIR, exist_ok=True)
         staging_file_path = os.path.join(STAGING_DIR, f"{target_id}.csv")
@@ -193,3 +245,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
