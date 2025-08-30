@@ -18,7 +18,7 @@ model = None
 if api_key:
     genai.configure(api_key=api_key)
     # The system_instruction parameter is not supported for gemini-1.5-flash
-    model = genai.GenerativeModel('gemini-1.5-pro-latest')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 else:
     print("Warning: GEMINI_API_KEY not set. Script can only run in dry-run mode.")
 
