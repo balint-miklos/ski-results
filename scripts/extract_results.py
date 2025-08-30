@@ -25,8 +25,9 @@ SYSTEM_INSTRUCTION = """You are an expert data extraction agent specializing in 
 -   **Headers:** The very first line of your response must be the CSV header row: `Name,Category,RaceName,Event,Location,Rank,Date`. Do not omit it.
 -   **Date Format:** The `Date` column must always be in `YYYY-MM-DD` format.
 -   **Special Ranks:** Use `DNS` for 'Did not start' and `DNF` for 'Did not finish' in the `Rank` column.
+-   **CSV Quoting:** If a value in any field (like `RaceName` or `Location`) contains a comma, you **must** enclose that value in double quotes (`"`) to ensure the CSV format remains valid. For example, a race named `My Race, Part 2` should be written as `"My Race, Part 2"`.
 -   **Missing Data:** If any information for a field is not available in the source document, leave that field blank in the CSV.
--   **Example Row:** `Alessio Miggiano,U12,Grossegg-Rennen,Riesenslalom,Hoch-Ybrig,12,2025-01-25`
+-   **Example Row:** `Alessio Miggiano,U12,"Grossegg-Rennen, Part 1",Riesenslalom,Hoch-Ybrig,12,2025-01-25`
 
 **Final Output Constraint:**
 -   You must **ONLY** provide the raw CSV data as your final response. Do not include any introductory text, explanations, summaries, or markdown formatting like ` ```csv`.
@@ -251,4 +252,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
