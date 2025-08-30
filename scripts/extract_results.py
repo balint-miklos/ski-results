@@ -212,7 +212,12 @@ def main():
     
     now_utc = datetime.now(timezone.utc)
     
+    processed_count = 0
     for target in crawl_targets:
+        if processed_count >= 10:
+            print("Processed 10 targets, stopping for now.")
+            break
+
         target_id = target.get("id")
         status = target.get("status")
         policy = target.get("crawlPolicy", {})
@@ -233,6 +238,7 @@ def main():
                 continue
 
         success = process_target(target, monitoring_targets, is_dry_run)
+        processed_count += 1
 
         if not is_dry_run:
             now_iso = now_utc.isoformat()

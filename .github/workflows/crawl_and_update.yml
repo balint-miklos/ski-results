@@ -3,8 +3,8 @@ name: Crawl and Update Ski Results
 on:
   workflow_dispatch:
   schedule:
-    # Runs at the top of the hour, every hour, on Thu, Fri, Sat, Sun, and Mon.
-    - cron: '0 * * * 0,1,4,5,6'
+    # Runs every 30 minutes on Thu, Fri, Sat, Sun, and Mon.
+    - cron: '*/30 * * * 0,1,4,5,6'
 
 permissions:
   contents: write
