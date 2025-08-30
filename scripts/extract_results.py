@@ -12,16 +12,6 @@ CRAWL_TARGETS_PATH = os.path.join(project_dir, "data", "crawl_targets.json")
 MONITORING_TARGETS_PATH = os.path.join(project_dir, "data", "monitoring_targets.json")
 STAGING_DIR = os.path.join(project_dir, "data", "staging")
 
-# --- API Key Configuration ---
-api_key = os.environ.get("GEMINI_API_KEY")
-model = None
-if api_key:
-    genai.configure(api_key=api_key)
-    # The system_instruction parameter is not supported for gemini-1.5-flash
-    model = genai.GenerativeModel('gemini-2.5-flash')
-else:
-    print("Warning: GEMINI_API_KEY not set. Script can only run in dry-run mode.")
-
 # --- System & User Prompt Definitions ---
 
 SYSTEM_INSTRUCTION = """You are an expert data extraction agent specializing in parsing ski race results from documents. Your sole purpose is to extract requested information accurately and format it into clean, machine-readable CSV data.
@@ -52,6 +42,19 @@ Extract all results that meet **either** of the following conditions:
 
 Generate the CSV output according to your system instructions.
 """
+
+# --- API Key and Model Configuration ---
+api_key = os.environ.get("GEMINI_API_KEY")
+model = None
+if api_key:
+    genai.configure(api_key=api_key)
+    # The system_instruction is passed to the model at initialization.
+    model = genai.GenerativeModel(
+        'gemini-2.5-flash',
+        system_instruction=SYSTEM_INSTRUCTION
+    )
+else:
+    print("Warning: GEMINI_API_KEY not set. Script can only run in dry-run mode.")
 
 def load_json_file(file_path):
     """Loads a generic JSON file and returns its content."""
@@ -139,8 +142,11 @@ def process_target(target, monitoring_targets, is_dry_run=True):
                 return False
 
             print("LIVE RUN: Sending request to Gemini API...")
+            # The system instruction is already part of the model configuration.
+            # We only need to send the user-specific parts of the prompt.
+            prompt_parts = [user_prompt, pdf_file]
             response = model.generate_content(
-                [user_prompt, pdf_file],
+                prompt_parts,
                 generation_config={"response_mime_type": "text/plain"}
             )
             csv_from_ai = response.text
