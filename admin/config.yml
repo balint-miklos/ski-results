@@ -2,27 +2,25 @@ backend:
   name: github
   repo: balint-miklos/ski-results # Your repository
   branch: main # Your default branch
+  # This line is the fix. It tells Decap to handle authentication directly
+  # with GitHub's API instead of redirecting to Netlify.
+  base_url: https://api.github.com
 
 # Optional media folders
 media_folder: "static/images"
 public_folder: "/images"
 
-# 'collections' is a list of content types
 collections:
-  # This is a "File Collection" for managing specific files
   - name: "settings"
     label: "Settings"
-    files: # The key must be 'files' (plural) and it must be a list
-      # Each item in the list is a file you can edit
+    files:
       - name: "crawl_targets_test"
         label: "Test Crawl Targets"
-        file: "data/crawl_targets_test.json" # Path to your JSON file
-        # The top-level field is a list widget, because your JSON is a list of objects
+        file: "data/crawl_targets_test.json"
         fields:
-          - name: targets # This is an arbitrary name for the list itself
+          - name: targets
             label: "Crawl Targets"
             widget: list
-            # 'fields' here define the properties of EACH object inside the list
             fields:
               - { label: "ID", name: "id", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
