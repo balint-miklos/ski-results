@@ -1,52 +1,53 @@
 backend:
   name: github
-  repo: balint-miklos/ski-results
-  branch: main
+  repo: balint-miklos/ski-results # Your repository
+  branch: main # Your default branch
 
-# These folders are not used by your file collection but are good practice to have.
+# Optional media folders
 media_folder: "static/images"
 public_folder: "/images"
 
+# 'collections' is a list of content types
 collections:
-  - name: "crawl_targets_test"
-    label: "Crawl Targets (Test)"
-    label_singular: "Crawl Target (Test)"
-    # This specifies the exact file to edit. 
-    # The path is relative to the root of your repository.
-    file: "data/crawl_targets_test.json"
-    extension: "json"
-    format: "json"
-    create: true
-    slug: "{{id}}"
-    fields:
-      - { label: "ID", name: "id", widget: "string" }
-      - { label: "URL", name: "url", widget: "string" }
-      - label: "Status"
-        name: "status"
-        widget: "select"
-        options:
-          - { label: "Queued", value: "queued" }
-          - { label: "Crawling", value: "crawling" }
-          - { label: "Processed", value: "processed" }
-          - { label: "Failed", value: "failed" }
-      - label: "Event"
-        name: "event"
-        widget: "object"
+  # This is a "File Collection" for managing specific files
+  - name: "settings"
+    label: "Settings"
+    files: # The key must be 'files' (plural) and it must be a list
+      # Each item in the list is a file you can edit
+      - name: "crawl_targets_test"
+        label: "Test Crawl Targets"
+        file: "data/crawl_targets_test.json" # Path to your JSON file
+        # The top-level field is a list widget, because your JSON is a list of objects
         fields:
-          - { label: "Start Date", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
-          - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
-      - label: "Crawl Policy"
-        name: "crawlPolicy"
-        widget: "object"
-        fields:
-          - { label: "Valid From", name: "validFrom", widget: "datetime" }
-          - { label: "Valid Until", name: "validUntil", widget: "datetime" }
-      - label: "Tracking"
-        name: "tracking"
-        widget: "object"
-        fields:
-          - { label: "Created At", name: "createdAt", widget: "datetime" }
-          - { label: "Updated At", name: "updatedAt", widget: "datetime" }
-          - { label: "Attempt Count", name: "attemptCount", widget: "number", value_type: "int" }
-          - { label: "Last Attempt At", name: "lastAttemptAt", widget: "datetime", required: false }
-          - { label: "Succeeded At", name: "succeededAt", widget: "datetime", required: false }
+          - name: targets # This is an arbitrary name for the list itself
+            label: "Crawl Targets"
+            widget: list
+            # 'fields' here define the properties of EACH object inside the list
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["queued", "crawling", "processed", "failed"]
+              - label: "Event"
+                name: "event"
+                widget: "object"
+                fields:
+                  - { label: "Start Date", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+                  - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+              - label: "Crawl Policy"
+                name: "crawlPolicy"
+                widget: "object"
+                fields:
+                  - { label: "Valid From", name: "validFrom", widget: "datetime" }
+                  - { label: "Valid Until", name: "validUntil", widget: "datetime" }
+              - label: "Tracking"
+                name: "tracking"
+                widget: "object"
+                fields:
+                  - { label: "Created At", name: "createdAt", widget: "datetime" }
+                  - { label: "Updated At", name: "updatedAt", widget: "datetime" }
+                  - { label: "Attempt Count", name: "attemptCount", widget: "number", value_type: "int" }
+                  - { label: "Last Attempt At", name: "lastAttemptAt", widget: "datetime", required: false }
+                  - { label: "Succeeded At", name: "succeededAt", widget: "datetime", required: false }
