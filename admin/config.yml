@@ -1,16 +1,18 @@
 backend:
   name: github
-  repo: balint-miklos/ski-results # Or your repository
-  branch: main # Or your default branch
+  repo: balint-miklos/ski-results
+  branch: main
 
-media_folder: "public/images"
+# These folders are not used by your file collection but are good practice to have.
+media_folder: "static/images"
 public_folder: "/images"
 
 collections:
   - name: "crawl_targets_test"
     label: "Crawl Targets (Test)"
     label_singular: "Crawl Target (Test)"
-    folder: "data"
+    # This specifies the exact file to edit. 
+    # The path is relative to the root of your repository.
     file: "data/crawl_targets_test.json"
     extension: "json"
     format: "json"
@@ -31,8 +33,8 @@ collections:
         name: "event"
         widget: "object"
         fields:
-          - { label: "Start Date", name: "startDate", widget: "datetime" }
-          - { label: "End Date", name: "endDate", widget: "datetime" }
+          - { label: "Start Date", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+          - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
       - label: "Crawl Policy"
         name: "crawlPolicy"
         widget: "object"
@@ -45,6 +47,6 @@ collections:
         fields:
           - { label: "Created At", name: "createdAt", widget: "datetime" }
           - { label: "Updated At", name: "updatedAt", widget: "datetime" }
-          - { label: "Attempt Count", name: "attemptCount", widget: "number" }
+          - { label: "Attempt Count", name: "attemptCount", widget: "number", value_type: "int" }
           - { label: "Last Attempt At", name: "lastAttemptAt", widget: "datetime", required: false }
           - { label: "Succeeded At", name: "succeededAt", widget: "datetime", required: false }
