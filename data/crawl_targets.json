@@ -2593,9 +2593,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 10,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 11,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2613,9 +2613,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 10,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 11,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2633,9 +2633,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 9,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 10,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2653,9 +2653,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 8,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 9,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2673,9 +2673,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 6,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 7,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2693,9 +2693,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2713,9 +2713,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2733,9 +2733,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
@@ -2753,16 +2753,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-31T23:09:04.680989+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-08-31T23:09:04.680989+00:00",
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
   {
     "id": "kwo2025-1356",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1356.pdf",
-    "status": "queued",
+    "status": "failed",
     "event": {
       "startDate": "2025-01-22",
       "endDate": "2025-01-22"
@@ -2773,9 +2773,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-08-30T23:17:37.553285+00:00",
-      "attemptCount": 0,
-      "lastAttemptAt": null,
+      "updatedAt": "2025-08-31T23:32:44.739580+00:00",
+      "attemptCount": 1,
+      "lastAttemptAt": "2025-08-31T23:32:44.739580+00:00",
       "succeededAt": null
     }
   },
