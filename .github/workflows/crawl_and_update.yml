@@ -36,9 +36,16 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # Add the master data file, the updated crawl targets, and all new/updated staging CSVs
-          git add data/ski-data.csv
-          git add data/crawl_targets.json
-          git add data/staging/*.csv
+          
+          # Add all the changed data files
+          git add data/ski-data.csv data/crawl_targets.json data/staging/*.csv
+          
+          # Commit the changes. The `|| echo` part prevents the workflow from failing if there's nothing to commit.
           git commit -m "Update data files [auto]" || echo "No changes to commit"
+          
+          # Pull the latest changes from the remote and rebase our commit on top of them.
+          # This prevents the "rejected (fetch first)" error.
+          git pull --rebase
+          
+          # Push the changes.
           git push
