@@ -2,6 +2,8 @@ backend:
   name: github
   repo: balint-miklos/ski-results
   branch: main
+  # This is the modern, secure, and direct way to handle GitHub authentication.
+  auth_type: pkce
 
 media_folder: "static/images"
 public_folder: "/images"
