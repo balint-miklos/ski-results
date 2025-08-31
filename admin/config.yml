@@ -1,10 +1,10 @@
 backend:
   name: github
-  repo: balint-miklos/ski-results # Your repository
-  branch: main # Your default branch
-  # This line is the fix. It tells Decap to handle authentication directly
-  # with GitHub's API instead of redirecting to Netlify.
-  base_url: https://api.github.com
+  repo: balint-miklos/ski-results
+  branch: main
+  # This line tells Decap CMS to use the modern PKCE auth flow, 
+  # which works better with GitHub Pages and custom domains.
+  auth_type: pkce
 
 # Optional media folders
 media_folder: "static/images"
