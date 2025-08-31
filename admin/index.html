@@ -4,20 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="https://unpkg.com/netlify-cms-oauth-provider-rose@^1.0.0/dist/netlify-cms-oauth-provider.js"></script>
 </head>
 <body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms-oauth-provider-rose@^1.0.0/dist/netlify-cms-oauth-provider.js"></script>
   <script>
-    // This script handles the login process.
-    // Replace the placeholder values with your actual Client ID.
-    // IMPORTANT: The Client Secret is NOT used here for security reasons.
-    // The service at vercel.app handles it securely.
-    netlifyCmsOauthProvider.init({
-      provider: 'github',
-      // Replace this with your Client ID from the GitHub OAuth App page
-      client_id: 'Ov23lio2wDqsPn8DeCWA'
-    });
+    // This check ensures the authentication provider has loaded before we try to use it.
+    if (window.netlifyCmsOauthProvider) {
+      netlifyCmsOauthProvider.init({
+        provider: 'github',
+        // Make sure this is still your Client ID from the GitHub OAuth App page
+        client_id: 'Ov23lio2wDqsPn8DeCWA'
+      });
+    } else {
+      console.error('Error: The Netlify CMS OAuth provider script did not load.');
+    }
   </script>
 </body>
 </html>

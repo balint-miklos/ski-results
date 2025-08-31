@@ -1,7 +1,7 @@
 backend:
   name: github
-  repo: balint-miklos/ski-results # Your repo
-  branch: main # Your branch
+  repo: balint-miklos/ski-results
+  branch: main
 
 media_folder: "static/images"
 public_folder: "/images"
@@ -28,8 +28,8 @@ collections:
                 name: "event"
                 widget: "object"
                 fields:
-                  - { label: "Start Date", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
-                  - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+                  - { label: "Start Date", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+                  - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
               - label: "Crawl Policy"
                 name: "crawlPolicy"
                 widget: "object"
