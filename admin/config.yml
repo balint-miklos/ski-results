@@ -1,0 +1,50 @@
+backend:
+  name: github
+  repo: balint-miklos/ski-results # Or your repository
+  branch: main # Or your default branch
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "crawl_targets_test"
+    label: "Crawl Targets (Test)"
+    label_singular: "Crawl Target (Test)"
+    folder: "data"
+    file: "data/crawl_targets_test.json"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - { label: "ID", name: "id", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Queued", value: "queued" }
+          - { label: "Crawling", value: "crawling" }
+          - { label: "Processed", value: "processed" }
+          - { label: "Failed", value: "failed" }
+      - label: "Event"
+        name: "event"
+        widget: "object"
+        fields:
+          - { label: "Start Date", name: "startDate", widget: "datetime" }
+          - { label: "End Date", name: "endDate", widget: "datetime" }
+      - label: "Crawl Policy"
+        name: "crawlPolicy"
+        widget: "object"
+        fields:
+          - { label: "Valid From", name: "validFrom", widget: "datetime" }
+          - { label: "Valid Until", name: "validUntil", widget: "datetime" }
+      - label: "Tracking"
+        name: "tracking"
+        widget: "object"
+        fields:
+          - { label: "Created At", name: "createdAt", widget: "datetime" }
+          - { label: "Updated At", name: "updatedAt", widget: "datetime" }
+          - { label: "Attempt Count", name: "attemptCount", widget: "number" }
+          - { label: "Last Attempt At", name: "lastAttemptAt", widget: "datetime", required: false }
+          - { label: "Succeeded At", name: "succeededAt", widget: "datetime", required: false }
