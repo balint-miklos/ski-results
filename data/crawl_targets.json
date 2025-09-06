@@ -8202,7 +8202,7 @@
   {
     "id": "kwo2025-1419",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1419.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-08",
       "endDate": "2025-03-08"
@@ -8213,16 +8213,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 10,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 11,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1420",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1420.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-08",
       "endDate": "2025-03-08"
@@ -8233,16 +8233,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 9,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 10,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1058",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1058.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8253,16 +8253,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 8,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 9,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1059",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1059.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8273,16 +8273,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 8,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 9,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1475",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1475.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8293,16 +8293,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 6,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 7,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1476",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1476.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8313,16 +8313,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 4,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 5,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1601",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1601.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8333,16 +8333,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 4,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 5,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1230",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1230.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8353,16 +8353,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1231",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1231.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8373,16 +8373,16 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
     "id": "kwo2025-1342",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1342.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-09",
       "endDate": "2025-03-09"
@@ -8393,10 +8393,10 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T06:41:40.009906+00:00",
-      "attemptCount": 1,
-      "lastAttemptAt": "2025-09-06T06:41:40.009906+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T07:08:08.741936+00:00",
+      "attemptCount": 2,
+      "lastAttemptAt": "2025-09-06T07:08:08.741936+00:00",
+      "succeededAt": "2025-09-06T07:08:08.741936+00:00"
     }
   },
   {
