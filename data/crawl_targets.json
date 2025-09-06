@@ -9462,7 +9462,7 @@
   {
     "id": "kwo2025-1604",
     "url": "https://www.swiss-ski-kwo.ch/tk/ranglisten/2025/1604.pdf",
-    "status": "failed",
+    "status": "processed",
     "event": {
       "startDate": "2025-03-22",
       "endDate": "2025-03-22"
@@ -9473,10 +9473,10 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 11,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
-      "succeededAt": null
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 12,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
+      "succeededAt": "2025-09-06T16:38:10.361010+00:00"
     }
   },
   {
@@ -9493,9 +9493,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 9,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 10,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9513,9 +9513,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 7,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 8,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9533,9 +9533,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 6,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 7,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9553,9 +9553,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 6,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 7,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9573,9 +9573,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 5,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 6,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9593,9 +9593,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 5,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 6,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9613,9 +9613,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 3,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 4,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9633,9 +9633,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 2,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 3,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
@@ -9653,9 +9653,9 @@
     },
     "tracking": {
       "createdAt": "2025-08-30T23:17:37.553285+00:00",
-      "updatedAt": "2025-09-06T16:09:41.265072+00:00",
-      "attemptCount": 1,
-      "lastAttemptAt": "2025-09-06T16:09:41.265072+00:00",
+      "updatedAt": "2025-09-06T16:38:10.361010+00:00",
+      "attemptCount": 2,
+      "lastAttemptAt": "2025-09-06T16:38:10.361010+00:00",
       "succeededAt": null
     }
   },
